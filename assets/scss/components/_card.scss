@@ -1,0 +1,81 @@
+.card--about {
+	font-family: sans-serif;
+	padding: em(33px) em(36px);
+	background-color: #ccc;
+	margin-bottom: em(96px);
+
+	.title {
+		font-size: em(48px);
+		padding: em(24px, 48px) 0 em(12px, 48px);
+		text-align: left;
+		font-weight: 700;
+	}
+
+	.description {
+		font-weight: 400;
+		font-size: em(18px);
+		padding-bottom: em(24px, 18px);
+		text-align: left;
+	}
+
+	ul {
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: column;
+		padding-left: em(14px);
+		height: em(100px);
+	}
+
+	li {
+		font-size: em(14px);
+		font-weight: 300;
+		text-align: left;
+		list-style: disc;
+		line-height: 1.75;
+	}
+}
+
+.card--contact {
+	font-family: sans-serif;
+	background-color: #ccc;
+	margin-bottom: em(96px);
+	padding-top: em(33px);
+	min-height: em(476px);
+
+	position: relative;
+
+	.title {
+		font-size: em(64px);
+		font-weight: 800;
+		margin-top: em(-64px, 64px);
+		line-height: 1;
+		padding-bottom: em(24px, 64px);
+		padding-left: em(36px, 64px);
+
+		position: relative;
+		z-index: 10;
+	}
+
+	.text {
+		padding: em(33px) em(36px);
+		width: 65%;
+		float: right;
+	}
+
+	.description {
+		font-size: em(22px);
+		padding: 0 em(6px, 22px) em(18px, 22px);
+	}
+
+	.email-address {
+		font-size: em(48px);
+	}
+
+	img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		width: 33%;
+	}
+}

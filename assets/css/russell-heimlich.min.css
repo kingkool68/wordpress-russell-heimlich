@@ -1,0 +1,51 @@
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
+html{-webkit-box-sizing:border-box;box-sizing:border-box}
+*,*:before,*:after{-webkit-box-sizing:inherit;box-sizing:inherit}
+body{line-height:1;font-family:'ff-meta-serif-web-pro';color:#000;background-color:#fff}
+ol,ul{list-style:none}
+blockquote,q{quotes:none}
+blockquote:after,blockquote:before,q:after,q:before{content:'';content:none}
+table{border-collapse:collapse;border-spacing:0}
+b,strong{font-weight:bold}
+em,i{font-style:italic}
+label{cursor:pointer}
+input{outline:0}
+sup{vertical-align:baseline;position:relative;top:-0.4em;font-size:85%;padding:0 .3em 0 .1em}
+a{text-decoration:none}
+.clearfix{zoom:1}
+.clearfix::after,.clearfix::before{content:".";display:block;height:0;overflow:hidden;zoom:1}
+.clearfix::after{clear:both}
+.screen-reader-text{clip:rect(1px,1px,1px,1px);height:1px;overflow:hidden;position:absolute !important;width:1px}
+.screen-reader-text:focus{clip:auto !important;display:block;height:auto;left:5px;top:5px;width:auto;z-index:100}
+.skip-to-content-link{background-color:#ef8923;color:#fff;padding:.75em}
+.admin-bar .skip-to-content-link{z-index:999999}
+.hide{display:none !important}
+.invisible{visibility:hidden !important}
+.hidden{border:0;clip:rect(0 0 0 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}
+.hide{display:none !important}
+.invisible{visibility:hidden !important}
+.hidden{border:0;clip:rect(0 0 0 0);height:.0625em;margin:-.0625em;overflow:hidden;padding:0;position:absolute;width:.0625em}
+.main-content{padding:2.5em}
+img{max-width:100%;height:auto}
+.alignleft{float:none}
+.alignright{float:none}
+.aligncenter{display:block;margin-left:auto;margin-right:auto}
+responsive-embed{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;margin-bottom:1.875em}
+responsive-embed iframe,responsive-embed object,responsive-embed embed{position:absolute;top:0;left:0;height:100%;width:100%}
+svg{fill:currentColor}
+.icon,.logo{width:1em;height:1em;stroke-width:0;stroke:currentColor}
+.card--about{font-family:sans-serif;padding:2.0625em 2.25em;background-color:#ccc;margin-bottom:6em}
+.card--about .title{font-size:3em;padding:.5em 0 .25em;text-align:left;font-weight:700}
+.card--about .description{font-weight:400;font-size:1.125em;padding-bottom:1.3333333333em;text-align:left}
+.card--about ul{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;padding-left:.875em;height:6.25em}
+.card--about li{font-size:.875em;font-weight:300;text-align:left;list-style:disc;line-height:1.75}
+.card--contact{font-family:sans-serif;background-color:#ccc;margin-bottom:6em;padding-top:2.0625em;min-height:29.75em;position:relative}
+.card--contact .title{font-size:4em;font-weight:800;margin-top:-1em;line-height:1;padding-bottom:.375em;padding-left:.5625em;position:relative;z-index:10}
+.card--contact .text{padding:2.0625em 2.25em;width:65%;float:right}
+.card--contact .description{font-size:1.375em;padding:0 .2727272727em .8181818182em}
+.card--contact .email-address{font-size:3em}
+.card--contact img{position:absolute;top:0;left:0;bottom:0;width:33%}
+@media(min-width:43.75em){.alignleft{float:left;margin:0 1em 1em 0}
+.alignright{float:right;margin:0 0 1em 1em}
+}

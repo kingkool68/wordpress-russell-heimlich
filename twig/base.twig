@@ -1,0 +1,30 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js ie ie6 lt-ie9 lt-ie8 lt-ie7" lang="en-US"> <![endif]-->
+<!--[if IE 7]><html class="no-js ie ie7 lt-ie9 lt-ie8" lang="en-US"> <![endif]-->
+<!--[if IE 8]><html class="no-js ie ie8 lt-ie9" lang="en-US"}> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en-US"> <!--<![endif]-->
+	<head>
+		<meta charset="UTF-8" />
+		<title>{{ wp_title() }}</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		{{ wp_head() }}
+
+		{% block head '' %}
+	</head>
+	<body {{ body_class() }}>
+		{{ get_header() }}
+
+		<div class="main-content">
+			<main>
+				{% block content '' %}
+			</main>
+		</div>
+		{{ get_footer() }}
+		{{ wp_footer() }}
+
+	</body>
+</html>

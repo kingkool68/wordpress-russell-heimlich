@@ -1,0 +1,39 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+	<div class="content wysiwyg">
+		<h1>Cards</h1>
+
+		<section class="card--about">
+			<h1 class="title">Skills</h1>
+			<p class="description">I build things so other people can focus on what they need to do and not fiddle with the technical bits.</p>
+			{#
+				TODO
+				Use a generic icon for the bulleted list for a little more interest
+				See https://twitter.com/steveschoger/status/872478203016826880
+			#}
+			<ul>
+				<li>HTML</li>
+				<li>CSS/Sass</li>
+				<li>JavaScript/jQuery/ES6</li>
+				<li>PHP/WordPress</li>
+				<li>Build Tools/Gulp/Grunt</li>
+				<li>MySQL</li>
+				<li>Servers/nginx/Apache</li>
+				<li>Caching/Redis/CDNs</li>
+				<li>Amazon Web Services</li>
+				<li>System Administration/Ubuntu/Bash</li>
+				<li>Code Deployment/CircleCI</li>
+			</ul>
+		</section>
+
+		<section class="card--contact">
+			<h1 class="title">Russell Heimlich</h1>
+			<div class="text">
+				<p class="description">A fullstack developer from AWS to z-index</p>
+				<p class="email-address">get@russellheimlich.com</p>
+			</div>
+			<img src="{{ image_path|esc_url }}/russell-heimlich-with-pogo-stick.jpg" alt="Russell Heimlich posing with a pogo stick in a 3-piece suit.">
+		</section>
+	</div>
+{% endblock %}

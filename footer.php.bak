@@ -1,0 +1,51 @@
+<?php
+	$social_media_links = array(
+		'https://twitter.com/kingkool68',
+		'https://www.facebook.com/russellh',
+		'https://www.linkedin.com/in/kingkool68/',
+		'https://github.com/kingkool68',
+		'https://www.instagram.com/kingkool68/',
+		'https://www.youtube.com/user/kingkool68',
+		'https://www.last.fm/user/kingkool68',
+		'https://profiles.wordpress.org/kingkool68',
+		'https://www.flickr.com/people/kingkool68/',
+		'http://stackoverflow.com/users/1119655',
+	);
+?>
+		<hr>
+		<p>Social Media Links</p>
+		<p>
+			<?php foreach ( $social_media_links as $link ) : ?>
+				<a href="<?php echo esc_url( $link ); ?>" rel="me"><img src="https://dummyimage.com/60.png"></a>
+			<?php endforeach; ?>
+		</p>
+		<p>Other Links</p>
+		<ul>
+			<li><a href="/contact/">Contact</a></li>
+			<li><a href="/money/">Money</a></li>
+			<li><a href="/resume/">Resume</a></li>
+			<li><a href="/colophon/">Colophon</a></li>
+		</ul>
+		<p>&copy; <?php echo date( 'Y' ); ?></p>
+
+		<h2>Redesign Inspiration</h2>
+		<ul>
+			<li><a href="http://incisive.nu/">http://incisive.nu/</a> - Typography</li>
+			<li><a href="https://patrickmarsceill.com/">https://patrickmarsceill.com/</a> - Color scheme, photo</li>
+			<li><a href="https://wilsonminer.com/">https://wilsonminer.com/</a></li>
+			<li><a href="https://subformapp.com/">https://subformapp.com/</a> - Header</li>
+			<li><a href="http://v6.robweychert.com/">http://v6.robweychert.com/</a> - color scheme, grid, overall design</li>
+			<li><a href="http://randsinrepose.com/">http://randsinrepose.com/</a> - Minimalism, typography</li>
+			<li><a href="http://danmall.me/blogroll/">http://danmall.me/blogroll/</a> - List of personal sites to draw inspiration from</li>
+			<li><a href="https://paulstamatiou.com/about/">https://paulstamatiou.com/about/</a> - Timeline of accomplishments on about page</li>
+			<li><a href="https://aaronparecki.com/life-stack/">https://aaronparecki.com/life-stack/</a> - List of products and services he reccomends</li>
+			<li><a href="http://www.charliewaite.me/">http://www.charliewaite.me/</a> - Layout</li>
+			<li><a href="http://tobiasahlin.com/blog/introduction-to-chartjs/">http://tobiasahlin.com/blog/introduction-to-chartjs/</a> - Blog header, Merriwether font</li>
+			<li><a href="https://taproot.agency">https://taproot.agency</a> - Cards</li>
+			<li><a href="http://www.thenerodesign.com/seeweb">http://www.thenerodesign.com/seeweb</a> - Yellow color, interesting layout</li>
+			<li><a href="https://themes.redradar.net/museum/">https://themes.redradar.net/museum/</a> - I like the framing and spacing</li>
+			<li><a href="https://www.brandonsavage.net/">https://www.brandonsavage.net/</a> - Simplicity</li>
+			<li><a href="https://mycolor.space/?hex=%230099FF&sub=1">Classy Pallete</a> - Color scheme</li>
+		</ul>
+	</body>
+</html>

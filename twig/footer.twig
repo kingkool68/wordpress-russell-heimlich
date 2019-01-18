@@ -1,0 +1,17 @@
+<hr>
+<p>Social Media Links</p>
+<p>
+	{% for url in social_media_urls %}
+		<a href="{{ url|esc_url }}" rel="me">
+			<img src="https://dummyimage.com/60.png">
+		</a>
+	{% endfor %}
+</p>
+<p>Other Links</p>
+<ul>
+	<li><a href="{{ site_url|esc_url }}/contact/">Contact</a></li>
+	<li><a href="{{ site_url|esc_url }}/money/">Money</a></li>
+	<li><a href="{{ site_url|esc_url }}/resume/">Resume</a></li>
+	<li><a href="{{ site_url|esc_url }}/colophon/">Colophon</a></li>
+</ul>
+<p>&copy; {{ year }}</p>
