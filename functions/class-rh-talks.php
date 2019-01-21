@@ -23,6 +23,7 @@ class RH_Talks {
 		add_action( 'init', array( $this, 'action_init' ) );
 		add_action( 'add_meta_boxes', array( $this, 'action_add_meta_boxes' ) );
 		add_action( 'save_post_' . $this->post_type, array( $this, 'action_save_post_talk' ), 10, 2 );
+		add_action( 'edit_form_after_title', array( $this, 'action_edit_form_after_title' ) );
 	}
 
 	public function setup_filters() {
@@ -86,6 +87,13 @@ class RH_Talks {
 		if ( ! empty( $_REQUEST['rh_talk_nonce'] ) && wp_verify_nonce( $_REQUEST['rh_talk_nonce'], $this->post_type ) ) {
 			update_post_meta( $post_id, 'talk-meta', (array) $_REQUEST['api_indicator'] );
 		}
+	}
+
+	public function action_edit_form_after_title( $post ) {
+		if ( $post->post_type !== $this->post_type ) {
+			return;
+		}
+		echo '<h2 style="padding: 0;">Talk Description</h2>';
 	}
 
 	public function handle_talk_metabox() {
