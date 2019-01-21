@@ -1,0 +1,31 @@
+<p>
+	<label for="rh-talk-details-slides-url">Slides URL</label>
+	<input type="url" name="rh-talk-details[slides-url]" id="rh-talk-details-slides-url" value="{{ val|esc_attr }}" class="widefat">
+</p>
+
+<p>
+	<label for="rh-talk-details-slides-source-url">Slides Source URL</label>
+	<input type="url" name="rh-talk-details[slides-source-url]" id="rh-talk-details-slides-source-url" value="{{ val|esc_attr }}" class="widefat">
+</p>
+
+<p>
+	<label for="rh-talk-details-video-url">Video URL</label>
+	<input type="url" name="rh-talk-details[video-url]" id="rh-talk-details-video-url" value="{{ val|esc_attr }}" class="widefat">
+</p>
+
+<p>
+	<label for="rh-talk-details-video-embed">Video Embed</label>
+	<textarea class="widefat" name="rh-talk-details[video-embed]" id="rh-talk-details-video-embed"></textarea>
+</p>
+
+<p>
+	<label for="rh-talk-details-event-name">Event Name</label>
+	<input type="text" name="rh-talk-details[event-name]" id="rh-talk-details-event-name" value="{{ val|esc_attr }}" class="widefat">
+</p>
+
+<p>
+	<label for="rh-talk-details-event-url">Event URL</label>
+	<input type="url" name="rh-talk-details[event-url]" id="rh-talk-details-event-url" value="{{ val|esc_attr }}" class="widefat">
+</p>
+
+<input type="hidden" name="rh-talk-details-nonce" value="{{ nonce|esc_attr }}">

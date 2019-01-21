@@ -62,7 +62,7 @@ class RH_Talks {
 		if ( $post_type !== $this->post_type ) {
 			return;
 		}
-		add_meta_box( 'rh-talk', 'Talk Details', array( $this, 'handle_talk_metabox' ), $post_type, 'advanced', 'low' );
+		add_meta_box( 'rh-talk-details', 'Talk Details', array( $this, 'handle_talk_details_metabox' ), $post_type, 'advanced', 'low' );
 	}
 
 	/**
@@ -84,8 +84,8 @@ class RH_Talks {
 			return $post_id;
 		}
 
-		if ( ! empty( $_REQUEST['rh_talk_nonce'] ) && wp_verify_nonce( $_REQUEST['rh_talk_nonce'], $this->post_type ) ) {
-			update_post_meta( $post_id, 'talk-meta', (array) $_REQUEST['api_indicator'] );
+		if ( ! empty( $_REQUEST['rh-talk-details-nonce'] ) && wp_verify_nonce( $_REQUEST['rh-talk-details-nonce'], $this->post_type ) ) {
+			update_post_meta( $post_id, 'rh-talk-details', (array) $_REQUEST['rh-talk-details'] );
 		}
 	}
 
@@ -96,12 +96,12 @@ class RH_Talks {
 		echo '<h2 style="padding: 0;">Talk Description</h2>';
 	}
 
-	public function handle_talk_metabox() {
+	public function handle_talk_details_metabox() {
 		$context = array(
 			'val'   => '',
 			'nonce' => wp_create_nonce( $this->post_type ),
 		);
-		Sprig::out( 'admin/talk-meta-box.twig', $context );
+		Sprig::out( 'admin/talk-details-meta-box.twig', $context );
 	}
 }
 
