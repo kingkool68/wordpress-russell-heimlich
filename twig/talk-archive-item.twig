@@ -1,0 +1,19 @@
+<a href="{{ url|esc_url }}" class="archive-item archive-item--talk">
+	{% if display_date %}
+		<time class="date" datetime="{{ machine_date|esc_attr }}">{{ display_date }}</time>
+	{% endif %}
+
+	{% if title %}
+		<h2 class="title">{{ title }}</h2>
+	{% endif %}
+
+	{% if excerpt %}
+		<div class="excerpt">
+			{{ excerpt }}
+		</div>
+	{% endif %}
+
+	{% if event_name %}
+		<span class="event-name">{{ event_name }}</span>
+	{% endif %}
+</a>
