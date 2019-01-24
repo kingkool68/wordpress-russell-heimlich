@@ -167,7 +167,7 @@ class RH_Talks {
 		return Sprig::render( 'talk-archive-item.twig', $context );
 	}
 
-	public static function render_archive_item_from_post( $post, $args = array() ) {
+	public static function render_archive_item_from_post( $post = null, $args = array() ) {
 		$post = get_post( $post );
 		$data = static::get_data( $post->ID );
 		$args = array(
@@ -199,10 +199,21 @@ class RH_Talks {
 		$output = [];
 		while ( $the_query->have_posts() ) :
 			$the_query->the_post();
-			$output[] = static::render_archive_item_from_post( $post );
+			$output[] = static::render_archive_item_from_post();
 		endwhile;
 		wp_reset_postdata();
 		return implode( "\n", $output );
+	}
+
+	public static function get_video_embed_code( $post = 0 ) {
+		$post = get_post( $post );
+		$data = static::get_data( $post->ID );
+		if ( ! empty( $data['video-embed'] ) ) {
+			return $data['video-embed'];
+		}
+		if ( ! empty( $data['video-url'] ) ) {
+			return wp_oembed_get( $data['video-url'] );
+		}
 	}
 }
 
