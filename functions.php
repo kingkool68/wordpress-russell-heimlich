@@ -9,6 +9,7 @@ $files_to_require = array(
 	'debugging.php',
 	'class-rh-helpers.php',
 
+	'class-rh-pagination.php',
 	'class-rh-scripts-and-styles.php',
 	'class-rh-talks.php',
 );
