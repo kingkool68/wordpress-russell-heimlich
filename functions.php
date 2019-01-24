@@ -12,6 +12,7 @@ $files_to_require = array(
 	'class-rh-pagination.php',
 	'class-rh-scripts-and-styles.php',
 	'class-rh-talks.php',
+	'class-rh-posts.php',
 );
 foreach ( $files_to_require as $filename ) {
 	$file = get_template_directory() . '/functions/' . $filename;

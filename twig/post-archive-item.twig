@@ -1,0 +1,9 @@
+<a href="{{ url|esc_url }}" class="archive-item archive-item--post">
+	{% if display_date %}
+		<time class="date" datetime="{{ machine_date|esc_attr }}">{{ display_date }}</time>
+	{% endif %}
+
+	{% if title %}
+		<h2 class="title">{{ title }}</h2>
+	{% endif %}
+</a>
