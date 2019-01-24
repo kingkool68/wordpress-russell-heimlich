@@ -47,10 +47,14 @@ class RH_Talks {
 			'menu_position'       => 20,
 			'menu_icon'           => 'dashicons-megaphone',
 			'can_export'          => true,
-			'has_archive'         => false,
+			'has_archive'         => true,
 			'exclude_from_search' => false,
 			'publicly_queryable'  => true,
 			'capability_type'     => 'post',
+			'rewrite'             => array(
+				'slug'       => 'talks',
+				'with_front' => false,
+			),
 		);
 		register_post_type( static::$post_type, $args );
 	}
@@ -169,6 +173,37 @@ class RH_Talks {
 			'event_name' => $data['event-name'],
 		);
 		return static::render_archive_item( $args );
+	}
+
+	/**
+	 * Render an archive item from a WP_Query object
+	 *
+	 * @param  object $the_query A WP_Query object
+	 * @return string            HTML of all archive items
+	 * @throws Exception         If $the_query isn't a WP_Query object then bail
+	 */
+	public static function render_archive_items_from_wp_query( $the_query = false ) {
+		global $wp_query;
+		if ( ! $the_query ) {
+			$the_query = $wp_query;
+		}
+		if ( ! $the_query instanceof WP_Query ) {
+			throw new Exception( '$the_query is not a WP_Query object!' );
+		}
+
+		$output = [];
+		while ( $the_query->have_posts() ) :
+			$the_query->the_post();
+			$args     = array(
+				'title'       => get_the_title(),
+				'url'         => get_permalink(),
+				'description' => get_the_excerpt(),
+				'date'        => get_the_date(),
+			);
+			$output[] = static::render_archive_item( $args );
+		endwhile;
+		wp_reset_postdata();
+		return implode( "\n", $output );
 	}
 }
 
