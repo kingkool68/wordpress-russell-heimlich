@@ -1,6 +1,6 @@
 <?php
 /**
- * Handle anything around general JavaScripts and CSS stylesheets
+ * Handle everytihng for Talks
  */
 class RH_Talks {
 
@@ -26,6 +26,7 @@ class RH_Talks {
 		add_action( 'add_meta_boxes', array( $this, 'action_add_meta_boxes' ) );
 		add_action( 'save_post_' . static::$post_type, array( $this, 'action_save_post_talk' ), 10, 2 );
 		add_action( 'edit_form_after_title', array( $this, 'action_edit_form_after_title' ) );
+		add_action( 'rh/the_loop_' . static::$post_type, array( $this, 'action_rh_the_loop' ), 10, 2 );
 	}
 
 	public function setup_filters() {
@@ -100,6 +101,10 @@ class RH_Talks {
 			return;
 		}
 		echo '<h2 style="padding: 24px 0 0;">Talk Description</h2>';
+	}
+
+	public function action_rh_the_loop( $post, $index ) {
+		echo static::render_archive_item_from_post( $post );
 	}
 
 	public function handle_talk_details_metabox( $post ) {
@@ -194,13 +199,7 @@ class RH_Talks {
 		$output = [];
 		while ( $the_query->have_posts() ) :
 			$the_query->the_post();
-			$args     = array(
-				'title'       => get_the_title(),
-				'url'         => get_permalink(),
-				'description' => get_the_excerpt(),
-				'date'        => get_the_date(),
-			);
-			$output[] = static::render_archive_item( $args );
+			$output[] = static::render_archive_item_from_post( $post );
 		endwhile;
 		wp_reset_postdata();
 		return implode( "\n", $output );
