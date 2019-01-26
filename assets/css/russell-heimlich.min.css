@@ -64,6 +64,7 @@ svg{fill:currentColor}
 .card--contact .description{font-size:1.375em;padding:0 .2727272727em .8181818182em}
 .card--contact .email-address{font-size:3em}
 .card--contact img{position:absolute;top:0;left:0;bottom:0;width:33%}
+.comments .children{padding-left:1.25em}
 @media(min-width:43.75em){.alignleft{float:left;margin:0 1em 1em 0}
 .alignright{float:right;margin:0 0 1em 1em}
 }
