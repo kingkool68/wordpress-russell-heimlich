@@ -20,4 +20,10 @@
 	{% endif %}
 
 	{{ the_content }}
+
+	{% if display_date %}
+		<p>
+			<time class="date" datetime="{{ machine_date|esc_attr }}">{{ display_date }}</time>
+		</p>
+	{% endif %}
 {% endblock %}
