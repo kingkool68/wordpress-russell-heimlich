@@ -48,7 +48,7 @@ class RH_Posts {
 				$context['machine_date'] = $dates->machine_date;
 			}
 			if ( empty( $context['display_date'] ) ) {
-				$context['display_datetime'] = $dates->display_datetime;
+				$context['display_date'] = $dates->display_date;
 			}
 		}
 

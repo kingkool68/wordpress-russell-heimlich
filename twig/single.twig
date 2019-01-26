@@ -5,6 +5,12 @@
 
 	{{ the_content }}
 
+	{% if display_datetime %}
+		<p>
+			Published <time class="date" datetime="{{ machine_date|esc_attr }}">{{ display_datetime }}</time>
+		</p>
+	{% endif %}
+
 	{% if comments %}
 		<ol class="comments">
 			{{ comments }}
