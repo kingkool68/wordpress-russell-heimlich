@@ -2,6 +2,7 @@
 
 class RH_Comments {
 
+	private $nonce_value = 'rh-comments';
 	/**
 	 * Get an instance of this class
 	 */
@@ -9,8 +10,27 @@ class RH_Comments {
 		static $instance = null;
 		if ( null === $instance ) {
 			$instance = new static();
+			$instance->setup_actions();
 		}
 		return $instance;
+	}
+
+	public function setup_actions() {
+		add_action( 'comment_form', array( $this, 'action_comment_form' ) );
+		add_action( 'pre_comment_on_post', array( $this, 'action_pre_comment_on_post' ) );
+	}
+
+	public function action_comment_form() {
+		wp_nonce_field( $this->nonce_value );
+	}
+
+	public function action_pre_comment_on_post() {
+		if (
+			empty( $_REQUEST['_wpnonce'] ) ||
+			! wp_verify_nonce( wp_unslash( $_REQUEST['_wpnonce'] ), $this->nonce_value )
+		) {
+			wp_die( 'Bad comment form nonce' );
+		}
 	}
 
 	public static function get_comments( $args = array(), $comments = array() ) {
@@ -69,6 +89,17 @@ class RH_Comments {
 			), $comment ),
 		);
 		Sprig::out( 'comment.twig', $context );
+	}
+
+	public static function comment_form( $args = array(), $post_id = null ) {
+		$defaults = array(
+			'format'      => 'html5',
+			'title_reply' => '',
+		);
+		$args     = wp_parse_args( $args, $defaults );
+		ob_start();
+			comment_form( $args, $post_id );
+		return ob_get_clean();
 	}
 }
 RH_Comments::get_instance();
