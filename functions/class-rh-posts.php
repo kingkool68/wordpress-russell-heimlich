@@ -43,12 +43,12 @@ class RH_Posts {
 		$context['title'] = apply_filters( 'the_title', $context['title'] );
 
 		if ( ! empty( $context['date'] ) ) {
-			$date = strtotime( $context['date'] );
+			$dates = RH_Helpers::get_date_values( $context['date'] );
 			if ( empty( $context['machine_date'] ) ) {
-				$context['machine_date'] = date( DATE_W3C, $date );
+				$context['machine_date'] = $dates->machine_date;
 			}
 			if ( empty( $context['display_date'] ) ) {
-				$context['display_date'] = date( get_option( 'date_format' ), $date );
+				$context['display_datetime'] = $dates->display_datetime;
 			}
 		}
 
@@ -58,9 +58,9 @@ class RH_Posts {
 	public static function render_archive_item_from_post( $post, $args = array() ) {
 		$post = get_post( $post );
 		$args = array(
-			'url'     => get_permalink( $post ),
-			'title'   => get_the_title( $post ),
-			'date'    => get_the_date( '', $post ),
+			'url'   => get_permalink( $post ),
+			'title' => get_the_title( $post ),
+			'date'  => $post->post_date,
 		);
 		return static::render_archive_item( $args );
 	}
