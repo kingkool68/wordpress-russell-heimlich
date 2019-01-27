@@ -16,7 +16,6 @@ class RH_Talks {
 		if ( null === $instance ) {
 			$instance = new static();
 			$instance->setup_actions();
-			$instance->setup_filters();
 		}
 		return $instance;
 	}
@@ -27,10 +26,6 @@ class RH_Talks {
 		add_action( 'save_post_' . static::$post_type, array( $this, 'action_save_post_talk' ), 10, 2 );
 		add_action( 'edit_form_after_title', array( $this, 'action_edit_form_after_title' ) );
 		add_action( 'rh/the_loop_' . static::$post_type, array( $this, 'action_rh_the_loop' ), 10, 2 );
-	}
-
-	public function setup_filters() {
-
 	}
 
 	public function action_init() {
@@ -121,7 +116,7 @@ class RH_Talks {
 		Sprig::out( 'admin/talk-details-meta-box.twig', $context );
 	}
 
-	public static function get_data( $key = '', $post = 0 ) {
+	public static function get_data( $post = null, $key = '' ) {
 		$post      = get_post( $post );
 		$post_meta = get_post_meta( $post->ID, static::$post_meta_key, true );
 		$output    = array(
@@ -168,15 +163,16 @@ class RH_Talks {
 	}
 
 	public static function render_archive_item_from_post( $post = null, $args = array() ) {
-		$post = get_post( $post );
-		$data = static::get_data( $post->ID );
-		$args = array(
+		$post     = get_post( $post );
+		$data     = static::get_data( $post->ID );
+		$defaults = array(
 			'url'        => get_permalink( $post ),
 			'title'      => get_the_title( $post ),
 			'excerpt'    => get_the_excerpt( $post ),
 			'date'       => get_the_date( '', $post ),
 			'event_name' => $data['event-name'],
 		);
+		$args     = wp_parse_args( $args, $defaults );
 		return static::render_archive_item( $args );
 	}
 
@@ -214,6 +210,33 @@ class RH_Talks {
 		if ( ! empty( $data['video-url'] ) ) {
 			return wp_oembed_get( $data['video-url'] );
 		}
+	}
+
+	public static function get_upcoming_talks_posts() {
+		$args  = array(
+			'posts_per_page'         => -1,
+			'post_status'            => 'future',
+			'post_type'              => static::$post_type,
+			'order'                  => 'ASC',
+
+			'no_found_rows'          => true,
+			'update_post_term_cache' => false,
+		);
+		$query = new WP_Query( $args );
+		return $query->posts;
+	}
+
+	public static function get_upcoming_talks() {
+		$output = [];
+		$talks  = static::get_upcoming_talks_posts();
+		foreach ( $talks as $talk ) {
+			$data     = static::get_data( $talk->ID );
+			$args     = array(
+				'url' => $data['event-url'],
+			);
+			$output[] = static::render_archive_item_from_post( $talk, $args );
+		}
+		return implode( "\n", $output );
 	}
 }
 
