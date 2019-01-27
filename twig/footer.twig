@@ -1,11 +1,7 @@
 <hr>
 <p>Social Media Links</p>
-<p>
-	{% for url in social_media_urls %}
-		<a href="{{ url|esc_url }}" rel="me">
-			<img src="https://dummyimage.com/60.png">
-		</a>
-	{% endfor %}
+<p class="footer-social-media-items">
+	{{ social_media_items }}
 </p>
 <p>Other Links</p>
 <ul>

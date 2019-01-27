@@ -1,0 +1,26 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+
+	<style>
+	.headline {
+		font-size: 36px;
+		margin: 32px 0 16px;
+	}
+	.example-svg-table .svg {
+		font-size: 36px;
+	}
+	</style>
+	<h2 class="headline">Icons</h2>
+	<table class="example-svg-table">
+		<tbody>
+			{% for icon in icons %}
+				<tr>
+					<td class="svg">{{ icon.svg }}</td>
+					<td class="label">{{ icon.label }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+{% endblock %}
