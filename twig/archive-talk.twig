@@ -2,12 +2,12 @@
 
 {% block content %}
 
-	{% if upcoming_items %}
+	{% if upcoming_talks %}
 		<h1>Upcoming Speaking Engagements</h1>
-		{{ upcoming_items }}
+		{{ upcoming_talks }}
 	{% endif %}
 
 	<h1>Invited Talks &amp; Speaking Engagements</h1>
-	{{ archive_items }}
+	{{ talks }}
 	{{ pagination }}
 {% endblock %}
