@@ -66,7 +66,9 @@ svg{fill:currentColor}
 .card--contact img{position:absolute;top:0;left:0;bottom:0;width:33%}
 .comments .children{padding-left:1.25em}
 .footer-social-media-items{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-flex-wrap:no-wrap;-ms-flex-wrap:no-wrap;flex-wrap:no-wrap;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;align-items:center}
-.footer-social-media-item{font-size:2em;color:#fff;-webkit-box-flex:1;-webkit-flex:1 1 0;-ms-flex:1 1 0;flex:1 1 0;margin:auto;padding:.25em;text-align:center}
+.footer-social-media-item{font-size:2em;color:#fff;-webkit-box-flex:1;-webkit-flex:1 1 0;-ms-flex:1 1 0;flex:1 1 0;margin:auto;padding:.25em;text-align:center;-webkit-transform:scale(1);-ms-transform:scale(1);transform:scale(1)}
+.footer-social-media-item .icon{-webkit-transition:-webkit-transform 240ms;transition:-webkit-transform 240ms;-o-transition:transform 240ms;transition:transform 240ms;transition:transform 240ms,-webkit-transform 240ms}
+.footer-social-media-item:hover .icon,.footer-social-media-item:focus .icon{-webkit-transform:scale(1.15);-ms-transform:scale(1.15);transform:scale(1.15)}
 .footer-social-media-item--twitter{background-color:#1da1f2}
 .footer-social-media-item--facebook{background-color:#3b5998}
 .footer-social-media-item--linkedin{background-color:#0077b5}
