@@ -1,15 +1,21 @@
 {% extends 'base.twig' %}
 
 {% block content %}
+
+	<small>{{ display_date }} &bull; 11 comments</small>
 	<h1>{{ the_title }}</h1>
 
-	{{ the_content }}
+	<div class="the-content wysiwyg">
+		{{ the_content }}
+	</div>
 
-	{% if display_datetime %}
-		<p>
-			Published <time class="date" datetime="{{ machine_date|esc_attr }}">{{ display_datetime }}</time>
-		</p>
-	{% endif %}
+	<div class="post-metadata">
+		{% if display_datetime %}
+			<p>
+				Published <time class="date" datetime="{{ machine_date|esc_attr }}">{{ display_datetime }}</time>
+			</p>
+		{% endif %}
+	</div>
 
 	{% if comments %}
 		<ol class="comments">

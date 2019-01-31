@@ -2,7 +2,7 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
 html{-webkit-box-sizing:border-box;box-sizing:border-box}
 *,*:before,*:after{-webkit-box-sizing:inherit;box-sizing:inherit}
-body{line-height:1;font-family:'ff-meta-serif-web-pro';color:#000;background-color:#fff}
+body{line-height:1;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;color:#000;background-color:#fff}
 ol,ul{list-style:none}
 blockquote,q{quotes:none}
 blockquote:after,blockquote:before,q:after,q:before{content:'';content:none}
@@ -26,24 +26,7 @@ a{text-decoration:none}
 .hide{display:none !important}
 .invisible{visibility:hidden !important}
 .hidden{border:0;clip:rect(0 0 0 0);height:.0625em;margin:-.0625em;overflow:hidden;padding:0;position:absolute;width:.0625em}
-/*! Typebase.less v0.1.0 | MIT License */html{font-family:serif;-webkit-font-smoothing:antialiased}
-p{line-height:1.5rem;margin-top:1.5rem;margin-bottom:0}
-ul,ol{margin-top:1.5rem;margin-bottom:1.5rem}
-ul li,ol li{line-height:1.5rem}
-ul ul,ol ul,ul ol,ol ol{margin-top:0;margin-bottom:0}
-blockquote{line-height:1.5rem;margin-top:1.5rem;margin-bottom:1.5rem}
-h1,h2,h3,h4,h5,h6{font-family:sans-serif;margin-top:1.5rem;margin-bottom:0;line-height:1.5rem;font-weight:700}
-h1{font-size:4.242rem;line-height:4.5rem;margin-top:3rem}
-h2{font-size:2.828rem;line-height:3rem;margin-top:3rem}
-h3{font-size:1.414rem}
-h4{font-size:.707rem}
-h5{font-size:.4713333333333333rem}
-h6{font-size:.3535rem}
-table{margin-top:1.5rem;border-spacing:0;border-collapse:collapse}
-table td,table th{padding:0;line-height:33px}
-code{vertical-align:bottom}
-.lead{font-size:1.414rem}
-.hug{margin-top:0}
+a{color:#000}
 .main-content{padding:2.5em}
 img{max-width:100%;height:auto}
 .alignleft{float:none}
@@ -64,6 +47,12 @@ svg{fill:currentColor}
 .card--contact .description{font-size:1.375em;padding:0 .2727272727em .8181818182em}
 .card--contact .email-address{font-size:3em}
 .card--contact img{position:absolute;top:0;left:0;bottom:0;width:33%}
+.site-header{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;background-color:#ccc;-webkit-box-shadow:0 0 10px 0 #000;box-shadow:0 0 10px 0 #000}
+.site-title{font-size:2.25em;letter-spacing:-.0555555556em;font-weight:900}
+.site-title a{padding:1em;display:block}
+.site-title:hover,.site-title:focus{background-color:#efefef}
+.site-nav a{display:inline-block;font-size:1.125em;padding:2.5em 1em}
+.site-nav a:hover,.site-nav afocus{background-color:#efefef}
 .comments .children{padding-left:1.25em}
 .footer-social-media-items{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-flex-wrap:no-wrap;-ms-flex-wrap:no-wrap;flex-wrap:no-wrap;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;align-items:center}
 .footer-social-media-item{font-size:2em;color:#fff;-webkit-box-flex:1;-webkit-flex:1 1 0;-ms-flex:1 1 0;flex:1 1 0;margin:auto;padding:.25em;text-align:center;-webkit-transform:scale(1);-ms-transform:scale(1);transform:scale(1)}

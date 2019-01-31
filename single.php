@@ -7,6 +7,7 @@ $context     = array(
 	'the_content'      => apply_filters( 'the_content', get_the_content() ),
 	'comment_form'     => RH_Comments::comment_form(),
 	'comments'         => RH_Comments::get_comments(),
+	'display_date'     => $date_values->display_date,
 	'display_datetime' => $date_values->display_datetime,
 	'machine_date'     => $date_values->machine_date,
 );
