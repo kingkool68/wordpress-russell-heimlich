@@ -17,6 +17,7 @@ $items   = array(
 	'https://www.brandonsavage.net/'                       => 'Simplicity',
 	'https://mycolor.space/?hex=%230099FF&sub=1'           => 'Classy Pallete - color scheme',
 	'https://www.sushiandrobots.com/consulting'            => 'A consulting page',
+	'https://www.studio-job.com'                           => 'Cartoony',
 );
 $context = array(
 	'items' => $items,
