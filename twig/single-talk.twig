@@ -1,29 +1,37 @@
 {% extends 'base.twig' %}
 
 {% block content %}
-	<h1>{{ the_title }}</h1>
+	<article>
+		<header>
+			<h1 class="single-title">{{ the_title }}</h1>
+		</header>
 
-	{% if event_name %}
-		<p class="event-name">
-			{% if event_url %}
-				<a href="{{ event_url|esc_url }}">{{ event_name}}</a>
-			{% else %}
-				{{ event_name }}
+		{% if event_name %}
+			<p class="event-name">
+				{% if event_url %}
+					<a href="{{ event_url|esc_url }}">{{ event_name}}</a>
+				{% else %}
+					{{ event_name }}
+				{% endif %}
+			</p>
+		{% endif %}
+
+		<div class="the-content wysiwyg">
+			{{ video_embed }}
+
+			{% if slides_url %}
+				<p><a href="{{ slides_url|esc_url }}">View Slides</a></p>
 			{% endif %}
-		</p>
-	{% endif %}
 
-	{{ video_embed }}
+			{{ the_content }}
+		</div>
 
-	{% if slides_url %}
-		<p><a href="{{ slides_url|esc_url }}">View Slides</a></p>
-	{% endif %}
-
-	{{ the_content }}
-
-	{% if display_date %}
-		<p>
-			<time class="date" datetime="{{ machine_date|esc_attr }}">{{ display_date }}</time>
-		</p>
-	{% endif %}
+		<footer>
+			{% if display_date %}
+				<p>
+					<time class="date" datetime="{{ machine_date|esc_attr }}">{{ display_date }}</time>
+				</p>
+			{% endif %}
+		</footer>
+	</article>
 {% endblock %}

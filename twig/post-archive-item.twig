@@ -1,9 +1,18 @@
 <a href="{{ url|esc_url }}" class="archive-item archive-item--post">
-	{% if display_date %}
-		<time class="date" datetime="{{ machine_date|esc_attr }}">{{ display_date }}</time>
+	{% if display_date or comment_count %}
+		<p class="archive-item-meta">
+			{% if display_date %}
+				<time class="archive-item-date" datetime="{{ machine_date|esc_attr }}">{{ display_date }}</time>
+			{% endif %}
+
+			{% if comment_count %}
+				<span class="archive-item-separator">&bull;</span>
+				<span class="archive-item-comment-count">{{ comment_count }} {{ comment_label }}</span>
+			{% endif %}
+		</p>
 	{% endif %}
 
 	{% if title %}
-		<h2 class="title">{{ title }}</h2>
+		<h2 class="archive-item-title">{{ title }}</h2>
 	{% endif %}
 </a>

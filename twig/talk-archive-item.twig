@@ -1,19 +1,23 @@
 <a href="{{ url|esc_url }}" class="archive-item archive-item--talk">
-	{% if display_date %}
-		<time class="date" datetime="{{ machine_date|esc_attr }}">{{ display_date }}</time>
+	{% if display_date or event_name %}
+		<p class="archive-item-meta">
+			{% if display_date %}
+				<time class="archive-item-date" datetime="{{ machine_date|esc_attr }}">{{ display_date }}</time>
+			{% endif %}
+
+			{% if event_name %}
+					at <span class="archive-item-event-name">{{ event_name }}</span>
+			{% endif %}
+		</p>
 	{% endif %}
 
 	{% if title %}
-		<h2 class="title">{{ title }}</h2>
+		<h2 class="archive-item-title">{{ title }}</h2>
 	{% endif %}
 
 	{% if excerpt %}
-		<div class="excerpt">
+		<div class="archive-item-excerpt">
 			{{ excerpt }}
 		</div>
-	{% endif %}
-
-	{% if event_name %}
-		<span class="event-name">{{ event_name }}</span>
 	{% endif %}
 </a>

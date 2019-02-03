@@ -2,25 +2,27 @@
 
 {% block content %}
 
-	<small>{{ display_date }} &bull; 11 comments</small>
-	<h1>{{ the_title }}</h1>
+	<article>
+		<header>
+			{% if comment_count %}
+				<small>{{ comment_count }} {{ comment_label }}</small>
+			{% endif %}
+			<h1 class="single-title">{{ the_title }}</h1>
+		</header>
 
-	<div class="the-content wysiwyg">
-		{{ the_content }}
-	</div>
+		<div class="the-content wysiwyg">
+			{{ the_content }}
+		</div>
 
-	<div class="post-metadata">
-		{% if display_datetime %}
-			<p>
-				Published <time class="date" datetime="{{ machine_date|esc_attr }}">{{ display_datetime }}</time>
-			</p>
-		{% endif %}
-	</div>
+		<footer class="post-metadata">
+			{% if display_datetime %}
+				<p>
+					Published <time class="date" datetime="{{ machine_date|esc_attr }}">{{ display_datetime }}</time>
+				</p>
+			{% endif %}
+		</footer>
+	</article>
 
-	{% if comments %}
-		<ol class="comments">
-			{{ comments }}
-		</ol>
-	{% endif %}
-	{{ comment_form }}
+	{{ comments }}
+
 {% endblock %}

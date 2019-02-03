@@ -33,11 +33,13 @@ class RH_Posts {
 
 	public static function render_archive_item( $args = array() ) {
 		$defaults         = array(
-			'url'          => '',
-			'title'        => '',
-			'date'         => '',
-			'display_date' => '',
-			'machine_date' => '',
+			'url'           => '',
+			'title'         => '',
+			'date'          => '',
+			'display_date'  => '',
+			'machine_date'  => '',
+			'comment_count' => '',
+			'comment_label' => '',
 		);
 		$context          = wp_parse_args( $args, $defaults );
 		$context['title'] = apply_filters( 'the_title', $context['title'] );
@@ -52,15 +54,21 @@ class RH_Posts {
 			}
 		}
 
+		if ( empty( $context['comment_label'] ) && ! empty( $context['comment_count'] ) ) {
+			$comment_count            = RH_Comments::get_comment_count( null, $context['comment_count'] );
+			$context['comment_label'] = $comment_count->label;
+		}
+
 		return Sprig::render( 'post-archive-item.twig', $context );
 	}
 
 	public static function render_archive_item_from_post( $post, $args = array() ) {
 		$post = get_post( $post );
 		$args = array(
-			'url'   => get_permalink( $post ),
-			'title' => get_the_title( $post ),
-			'date'  => $post->post_date,
+			'url'           => get_permalink( $post ),
+			'title'         => get_the_title( $post ),
+			'date'          => $post->post_date,
+			'comment_count' => get_comments_number( $post ),
 		);
 		return static::render_archive_item( $args );
 	}

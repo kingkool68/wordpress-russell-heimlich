@@ -27,7 +27,9 @@ a{text-decoration:none}
 .invisible{visibility:hidden !important}
 .hidden{border:0;clip:rect(0 0 0 0);height:.0625em;margin:-.0625em;overflow:hidden;padding:0;position:absolute;width:.0625em}
 a{color:#000}
+.wysiwyg p{font-size:1.3125em;line-height:1.6;margin-bottom:1.1904761905em}
 .main-content{padding:2.5em}
+.the-content{max-width:43.75em;margin:0 auto}
 img{max-width:100%;height:auto}
 .alignleft{float:none}
 .alignright{float:none}
@@ -67,6 +69,13 @@ svg{fill:currentColor}
 .footer-social-media-item--lastfm{background-color:#d51007}
 .footer-social-media-item--wordpress{background-color:#21759b}
 .footer-social-media-item--stackoverflow{background-color:#f48024}
+.single-title{font-size:3em;font-weight:900;margin-bottom:.75em}
+.archive-section-title{font-size:3em;font-weight:700;margin-bottom:.75em}
+.archive-item{display:block;margin-bottom:2.25em}
+.archive-item:hover .archive-item-title,.archive-item:focus .archive-item-title{text-decoration:underline}
+.archive-item-meta{display:block;font-size:.875em;font-weight:100}
+.archive-item-title{font-size:1.75em;font-weight:700;padding-top:.1428571429em;margin-bottom:.2857142857em}
+.archive-item-excerpt{padding-top:.5em}
 @media(min-width:43.75em){.alignleft{float:left;margin:0 1em 1em 0}
 .alignright{float:right;margin:0 0 1em 1em}
 }

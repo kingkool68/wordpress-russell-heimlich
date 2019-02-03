@@ -1,0 +1,33 @@
+.archive-item {
+	display: block;
+	margin-bottom: em(36px);
+
+	&:hover .archive-item-title,
+	&:focus .archive-item-title {
+		text-decoration: underline;
+	}
+}
+
+.archive-item-meta {
+	display: block;
+	font-size: em(14px);
+	font-weight: 100;
+}
+
+.archive-item-date {
+}
+
+.archive-item-comment-count {
+
+}
+
+.archive-item-title {
+	font-size: em(28px);
+	font-weight: 700;
+	padding-top: em(4px, 28px);
+	margin-bottom: em(8px, 28px);
+}
+
+.archive-item-excerpt {
+	padding-top:em(8px);
+}

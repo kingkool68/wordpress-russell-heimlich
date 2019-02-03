@@ -33,6 +33,19 @@ class RH_Comments {
 		}
 	}
 
+	public static function get_comments_section( $post_id = null ) {
+		$post          = get_post( $post_id );
+		$comment_count = static::get_comment_count( $post );
+
+		$context       = array(
+			'comments_count' => $comment_count->number,
+			'comment_label'  => ucfirst( $comment_count->label ),
+			'comments_list'  => static::get_comments(),
+			'comment_form'   => static::get_comment_form(),
+		);
+		return Sprig::render( 'comments-section.twig', $context );
+	}
+
 	public static function get_comments( $args = array(), $comments = array() ) {
 		$defaults = array(
 			'style'    => 'ol',
@@ -91,7 +104,7 @@ class RH_Comments {
 		Sprig::out( 'comment.twig', $context );
 	}
 
-	public static function comment_form( $args = array(), $post_id = null ) {
+	public static function get_comment_form( $args = array(), $post_id = null ) {
 		$defaults = array(
 			'format'      => 'html5',
 			'title_reply' => '',
@@ -100,6 +113,16 @@ class RH_Comments {
 		ob_start();
 			comment_form( $args, $post_id );
 		return ob_get_clean();
+	}
+
+	public static function get_comment_count( $post_id = null, $comment_count = 0 ) {
+		if ( ! empty( $post_id ) ) {
+			$comment_count = get_comments_number( $post_id );
+		}
+		return (object) array(
+			'number' => $comment_count,
+			'label'  => _n( 'comment', 'comments', $comment_count ),
+		);
 	}
 }
 RH_Comments::get_instance();
