@@ -70,6 +70,8 @@ svg{fill:currentColor}
 .footer-social-media-item--wordpress{background-color:#21759b}
 .footer-social-media-item--stackoverflow{background-color:#f48024}
 .single-title{font-size:3em;font-weight:900;margin-bottom:.75em}
+.archive-description{margin-bottom:1.5em}
+.archive-description p{font-size:1em;margin-bottom:1em}
 .archive-section-title{font-size:3em;font-weight:700;margin-bottom:.75em}
 .archive-item{display:block;margin-bottom:2.25em}
 .archive-item:hover .archive-item-title,.archive-item:focus .archive-item-title{text-decoration:underline}
