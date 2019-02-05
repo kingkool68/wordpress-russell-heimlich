@@ -37,7 +37,7 @@ class RH_Comments {
 		$post          = get_post( $post_id );
 		$comment_count = static::get_comment_count( $post );
 
-		$context       = array(
+		$context = array(
 			'comments_count' => $comment_count->number,
 			'comment_label'  => ucfirst( $comment_count->label ),
 			'comments_list'  => static::get_comments(),

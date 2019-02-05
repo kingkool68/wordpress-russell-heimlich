@@ -1,12 +1,18 @@
 <{{ tag }} id="comment-{{ id|absint }}" {{ class_attr }}>
-	<p>{{ author_link }}</p>
+	<article>
+		<footer class="comment-meta">
+			{{ author_link }}
 
-	<a href="{{ permalink_url|esc_url }}">
-		<time datetime="{{ machine_date|esc_attr }}">
-			{{ date }} {{ time }}
-		</time>
-	</a>
+			<a href="{{ permalink_url|esc_url }}" class="comment-permalink">
+				#
+			</a>
+			<time datetime="{{ machine_date|esc_attr }}" class="comment-datetime">
+				{{ date }} {{ time }}
+			</time>
+		</footer>
 
-	{{ text }}
+		{{ text }}
+
+	</article>
 
 	{{ reply_link }}

@@ -55,7 +55,17 @@ svg{fill:currentColor}
 .site-title:hover,.site-title:focus{background-color:#efefef}
 .site-nav a{display:inline-block;font-size:1.125em;padding:2.5em 1em}
 .site-nav a:hover,.site-nav afocus{background-color:#efefef}
-.comments .children{padding-left:1.25em}
+.comments{padding-top:2em;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-align:start;-webkit-align-items:flex-start;-ms-flex-align:start;align-items:flex-start;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between}
+.comments .comment-count-title{font-size:1.75em;margin:.2857142857em 0;-webkit-box-flex:1;-webkit-flex:1 100%;-ms-flex:1 100%;flex:1 100%}
+.comments .comments-list{-webkit-box-flex:1;-webkit-flex:1 60%;-ms-flex:1 60%;flex:1 60%}
+.comments .comment-meta{padding:0 0 1em}
+.comments .comment{padding:.5em}
+.comments .comment .url{font-size:1.125em;display:block;font-weight:700}
+.comments .comment p{margin-bottom:1em}
+.comments .bypostauthor{background-color:#f8f6de}
+.comments .children{padding-left:2em}
+.comments .comment-form-wrapper{-webkit-box-flex:1;-webkit-flex:1 40%;-ms-flex:1 40%;flex:1 40%;position:-webkit-sticky;position:sticky;top:0;padding:0 2em}
+.admin-bar .comments .comment-form-wrapper{top:2em}
 .footer-social-media-items{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-flex-wrap:no-wrap;-ms-flex-wrap:no-wrap;flex-wrap:no-wrap;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;align-items:center}
 .footer-social-media-item{font-size:2em;color:#fff;-webkit-box-flex:1;-webkit-flex:1 1 0;-ms-flex:1 1 0;flex:1 1 0;margin:auto;padding:.25em;text-align:center;-webkit-transform:scale(1);-ms-transform:scale(1);transform:scale(1)}
 .footer-social-media-item .icon{-webkit-transition:-webkit-transform 240ms;transition:-webkit-transform 240ms;-o-transition:transform 240ms;transition:transform 240ms;transition:transform 240ms,-webkit-transform 240ms}

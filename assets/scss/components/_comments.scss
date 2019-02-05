@@ -1,5 +1,55 @@
 .comments {
+	padding-top: em(32px);
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	justify-content: space-between;
+
+	.comment-count-title {
+		font-size: em(28px);
+		margin: em(8px, 28px) 0;
+
+		flex: 1 100%;
+	}
+
+	.comments-list {
+		flex: 1 60%;
+	}
+
+	.comment-meta {
+		padding: 0 0 em(16px);
+	}
+
+	.comment {
+		padding: em(8px);
+
+		.url {
+			font-size: em(18px);
+			display: block;
+			font-weight: 700;
+		}
+
+		p {
+			margin-bottom: em(16px);
+		}
+	}
+
+	.bypostauthor {
+		background-color: #f8f6de;
+	}
+
 	.children {
-		padding-left: em( 20px );
+		padding-left: em( 32px );
+	}
+
+	.comment-form-wrapper {
+		flex: 1 40%;
+		position: sticky;
+		top: 0;
+		padding: 0 em(32px);
+
+		.admin-bar & {
+			top: em(32px);
+		}
 	}
 }
