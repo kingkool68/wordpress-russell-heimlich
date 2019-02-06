@@ -28,6 +28,11 @@ a{text-decoration:none}
 .hidden{border:0;clip:rect(0 0 0 0);height:.0625em;margin:-.0625em;overflow:hidden;padding:0;position:absolute;width:.0625em}
 a{color:#000}
 .wysiwyg p{font-size:1.3125em;line-height:1.6;margin-bottom:1.1904761905em}
+.wysiwyg ul,.wysiwyg ol{padding-left:1em;margin-bottom:1.5625em}
+.wysiwyg ul{list-style:disc}
+.wysiwyg ol{list-style:decimal}
+.wysiwyg li{font-size:1.3125em;line-height:1.6;margin-bottom:.5952380952em}
+.wysiwyg li li{font-size:1em}
 .main-content{padding:2.5em}
 .the-content{max-width:43.75em;margin:0 auto}
 img{max-width:100%;height:auto}
@@ -60,8 +65,8 @@ svg{fill:currentColor}
 .comments .comments-list{-webkit-box-flex:1;-webkit-flex:1 60%;-ms-flex:1 60%;flex:1 60%}
 .comments .comment-meta{padding:0 0 1em}
 .comments .comment{padding:.5em}
-.comments .comment .url{font-size:1.125em;display:block;font-weight:700}
-.comments .comment p{margin-bottom:1em}
+.comments .comment p{margin-bottom:1em;line-height:1.6}
+.comments .comment-author{font-size:1.125em;display:block;font-weight:700;margin-bottom:.4444444444em}
 .comments .bypostauthor{background-color:#f8f6de}
 .comments .children{padding-left:2em}
 .comments .comment-form-wrapper{-webkit-box-flex:1;-webkit-flex:1 40%;-ms-flex:1 40%;flex:1 40%;position:-webkit-sticky;position:sticky;top:0;padding:0 2em}

@@ -23,15 +23,17 @@
 	.comment {
 		padding: em(8px);
 
-		.url {
-			font-size: em(18px);
-			display: block;
-			font-weight: 700;
-		}
-
 		p {
 			margin-bottom: em(16px);
+			line-height: 1.6;
 		}
+	}
+
+	.comment-author {
+		font-size: em(18px);
+		display: block;
+		font-weight: 700;
+		margin-bottom: em(8px, 18px);
 	}
 
 	.bypostauthor {
