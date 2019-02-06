@@ -61,7 +61,9 @@ svg{fill:currentColor}
 .site-nav a{display:inline-block;font-size:1.125em;padding:2.5em 1em}
 .site-nav a:hover,.site-nav afocus{background-color:#efefef}
 .comments{padding-top:2em;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-align:start;-webkit-align-items:flex-start;-ms-flex-align:start;align-items:flex-start;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between}
-.comments .comment-count-title{font-size:1.75em;margin:.2857142857em 0;-webkit-box-flex:1;-webkit-flex:1 100%;-ms-flex:1 100%;flex:1 100%}
+.comments .comment-count-title{font-size:1.75em;margin:.2857142857em 0;padding-left:1.1428571429em;-webkit-box-flex:1;-webkit-flex:1 100%;-ms-flex:1 100%;flex:1 100%}
+.comments .comment-form-wrapper{-webkit-box-flex:1;-webkit-flex:1 40%;-ms-flex:1 40%;flex:1 40%;position:-webkit-sticky;position:sticky;top:0;padding:0 2em}
+.admin-bar .comments .comment-form-wrapper{top:2em}
 .comments .comments-list{-webkit-box-flex:1;-webkit-flex:1 60%;-ms-flex:1 60%;flex:1 60%}
 .comments .comment-meta{padding:0 0 1em}
 .comments .comment-article{-webkit-border-radius:.5em;border-radius:.5em;padding:1em;margin-bottom:1em;max-width:32.5em}
@@ -70,8 +72,6 @@ svg{fill:currentColor}
 .comments .comment p:last-child{margin-bottom:0}
 .comments .comment-author{font-size:1.125em;display:block;font-weight:700;margin-bottom:.4444444444em}
 .comments .children{padding-left:3em}
-.comments .comment-form-wrapper{-webkit-box-flex:1;-webkit-flex:1 40%;-ms-flex:1 40%;flex:1 40%;position:-webkit-sticky;position:sticky;top:0;padding:0 2em}
-.admin-bar .comments .comment-form-wrapper{top:2em}
 .comment-notes,.comment-form .required{display:none}
 .comment-form{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}
 .comment-form label{font-size:.875em;display:block;padding-bottom:.2857142857em;cursor:pointer}

@@ -1,13 +1,14 @@
 <section class="comments">
 	<h1 class="comment-count-title">{{ comments_count }} {{ comment_label }}</h1>
+
+	<div class="comment-form-wrapper">
+		{{ comment_form }}
+	</div>
+
 	{% if comments_list %}
 		<ol class="comments-list">
 			{{ comments_list }}
 		</ol>
 	{% endif %}
-
-	<div class="comment-form-wrapper">
-		{{ comment_form }}
-	</div>
 
 </section>

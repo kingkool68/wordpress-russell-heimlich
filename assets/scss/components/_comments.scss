@@ -8,8 +8,20 @@
 	.comment-count-title {
 		font-size: em(28px);
 		margin: em(8px, 28px) 0;
+		padding-left: em(32px, 28px);
 
 		flex: 1 100%;
+	}
+
+	.comment-form-wrapper {
+		flex: 1 40%;
+		position: sticky;
+		top: 0;
+		padding: 0 em(32px);
+
+		.admin-bar & {
+			top: em(32px);
+		}
 	}
 
 	.comments-list {
@@ -53,17 +65,6 @@
 
 	.children {
 		padding-left: em(48px);
-	}
-
-	.comment-form-wrapper {
-		flex: 1 40%;
-		position: sticky;
-		top: 0;
-		padding: 0 em(32px);
-
-		.admin-bar & {
-			top: em(32px);
-		}
 	}
 }
 
