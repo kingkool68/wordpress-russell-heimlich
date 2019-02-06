@@ -64,13 +64,26 @@ svg{fill:currentColor}
 .comments .comment-count-title{font-size:1.75em;margin:.2857142857em 0;-webkit-box-flex:1;-webkit-flex:1 100%;-ms-flex:1 100%;flex:1 100%}
 .comments .comments-list{-webkit-box-flex:1;-webkit-flex:1 60%;-ms-flex:1 60%;flex:1 60%}
 .comments .comment-meta{padding:0 0 1em}
-.comments .comment{padding:.5em}
+.comments .comment-article{-webkit-border-radius:.5em;border-radius:.5em;padding:1em;margin-bottom:1em;max-width:32.5em}
+.comments .bypostauthor .comment-article{background-color:#f8f6de}
 .comments .comment p{margin-bottom:1em;line-height:1.6}
+.comments .comment p:last-child{margin-bottom:0}
 .comments .comment-author{font-size:1.125em;display:block;font-weight:700;margin-bottom:.4444444444em}
-.comments .bypostauthor{background-color:#f8f6de}
-.comments .children{padding-left:2em}
+.comments .children{padding-left:3em}
 .comments .comment-form-wrapper{-webkit-box-flex:1;-webkit-flex:1 40%;-ms-flex:1 40%;flex:1 40%;position:-webkit-sticky;position:sticky;top:0;padding:0 2em}
 .admin-bar .comments .comment-form-wrapper{top:2em}
+.comment-notes,.comment-form .required{display:none}
+.comment-form{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}
+.comment-form label{font-size:.875em;display:block;padding-bottom:.2857142857em;cursor:pointer}
+.comment-form input{font-size:.75em;padding:.6666666667em;width:100%}
+.comment-form textarea{font-size:1em;padding:.5em;width:100%}
+.comment-form .comment-form-comment,.comment-form .comment-form-author,.comment-form .comment-form-email,.comment-form .comment-form-url{padding:.5em 0}
+.comment-form .comment-form-comment,.comment-form .comment-form-url{-webkit-box-flex:1;-webkit-flex:1 100%;-ms-flex:1 100%;flex:1 100%}
+.comment-form .comment-form-author,.comment-form .comment-form-email{-webkit-box-flex:1;-webkit-flex:1 calc(50% - 4px);-ms-flex:1 calc(50% - 4px);flex:1 calc(50% - 4px)}
+.comment-form .comment-form-author{margin-right:.25em}
+.comment-form .comment-form-email{margin-left:.25em}
+.comment-form .form-submit{margin:0 auto}
+.comment-form .submit{font-size:1.125em;-webkit-appearance:button;-moz-appearance:button;appearance:button;text-align:center;cursor:pointer;padding:.4444444444em 1.7777777778em}
 .footer-social-media-items{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-flex-wrap:no-wrap;-ms-flex-wrap:no-wrap;flex-wrap:no-wrap;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;align-items:center}
 .footer-social-media-item{font-size:2em;color:#fff;-webkit-box-flex:1;-webkit-flex:1 1 0;-ms-flex:1 1 0;flex:1 1 0;margin:auto;padding:.25em;text-align:center;-webkit-transform:scale(1);-ms-transform:scale(1);transform:scale(1)}
 .footer-social-media-item .icon{-webkit-transition:-webkit-transform 240ms;transition:-webkit-transform 240ms;-o-transition:transform 240ms;transition:transform 240ms;transition:transform 240ms,-webkit-transform 240ms}

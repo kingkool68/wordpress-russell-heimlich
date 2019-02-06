@@ -1,5 +1,5 @@
 <{{ tag }} id="comment-{{ id|absint }}" {{ class_attr }}>
-	<article>
+	<article class="comment-article">
 		<footer class="comment-meta">
 			<div class="comment-author">{{ author_link }}</div>
 
@@ -11,7 +11,9 @@
 			</time>
 		</footer>
 
-		{{ text }}
+		<div class="comment-text">
+			{{ text }}
+		</div>
 
 	</article>
 
