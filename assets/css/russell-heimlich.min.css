@@ -71,6 +71,7 @@ svg{fill:currentColor}
 .comments .comment p{margin-bottom:1em;line-height:1.6}
 .comments .comment p:last-child{margin-bottom:0}
 .comments .comment-author{font-size:1.125em;display:block;font-weight:700;margin-bottom:.4444444444em}
+.comments .comment-text{padding-left:.875em}
 .comments .children{padding-left:3em}
 .comment-notes,.comment-form .required{display:none}
 .comment-form{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}
