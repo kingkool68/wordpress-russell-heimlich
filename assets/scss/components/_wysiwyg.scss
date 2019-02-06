@@ -5,4 +5,28 @@
 		line-height: 1.6;
 		margin-bottom: em(25px, 21px);
 	}
+
+	ul,
+	ol {
+		padding-left: em(16px);
+		margin-bottom: em(25px);
+	}
+
+	ul {
+		list-style: disc;
+	}
+
+	ol {
+		list-style: decimal;
+	}
+
+	li {
+		font-size: em(21px);
+		line-height: 1.6;
+		margin-bottom: em(12.5px, 21px);
+
+		li {
+			font-size: em(21px, 21px);
+		}
+	}
 }
