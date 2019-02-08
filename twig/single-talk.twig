@@ -2,17 +2,23 @@
 
 {% block content %}
 	<article>
-		<header>
+		<header class="the-header">
 			<h1 class="single-title">{{ the_title }}</h1>
+			{% if display_date %}
+				<p>
+					Presented on <time class="date" datetime="{{ machine_date|esc_attr }}">{{ display_date }}</time> at
+					{% if event_url %}
+						<a href="{{ event_url|esc_url }}">{{ event_name}}</a>
+					{% else %}
+						{{ event_name }}
+					{% endif %}
+				</p>
+			{% endif %}
 		</header>
 
 		{% if event_name %}
 			<p class="event-name">
-				{% if event_url %}
-					<a href="{{ event_url|esc_url }}">{{ event_name}}</a>
-				{% else %}
-					{{ event_name }}
-				{% endif %}
+
 			</p>
 		{% endif %}
 
@@ -27,11 +33,7 @@
 		</div>
 
 		<footer>
-			{% if display_date %}
-				<p>
-					<time class="date" datetime="{{ machine_date|esc_attr }}">{{ display_date }}</time>
-				</p>
-			{% endif %}
+
 		</footer>
 	</article>
 {% endblock %}
