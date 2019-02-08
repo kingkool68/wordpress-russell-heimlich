@@ -28,12 +28,14 @@ a{text-decoration:none}
 .hidden{border:0;clip:rect(0 0 0 0);height:.0625em;margin:-.0625em;overflow:hidden;padding:0;position:absolute;width:.0625em}
 a{color:#000}
 .wysiwyg p{font-size:1.3125em;line-height:1.6;margin-bottom:1.1904761905em}
+.wysiwyg a{text-decoration:underline}
 .wysiwyg ul,.wysiwyg ol{padding-left:1em;margin-bottom:1.5625em}
 .wysiwyg ul{list-style:disc}
 .wysiwyg ol{list-style:decimal}
 .wysiwyg li{font-size:1.3125em;line-height:1.6;margin-bottom:.5952380952em}
 .wysiwyg li li{font-size:1em}
 .main-content{padding:2.5em}
+.the-header{max-width:64em;margin:0 auto}
 .the-content{max-width:43.75em;margin:0 auto}
 img{max-width:100%;height:auto}
 .alignleft{float:none}
