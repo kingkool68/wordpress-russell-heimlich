@@ -59,12 +59,12 @@ class RH_Talks {
 			'menu_position'       => 20,
 			'menu_icon'           => 'dashicons-megaphone',
 			'can_export'          => true,
-			'has_archive'         => true,
+			'has_archive'         => 'speaking',
 			'exclude_from_search' => false,
 			'publicly_queryable'  => true,
 			'capability_type'     => 'post',
 			'rewrite'             => array(
-				'slug'       => 'talks',
+				'slug'       => 'talk',
 				'with_front' => false,
 			),
 		);
