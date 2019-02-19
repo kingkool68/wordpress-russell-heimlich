@@ -4,6 +4,11 @@
  */
 class RH_Posts {
 
+	/**
+	 * The post type
+	 *
+	 * @var string
+	 */
 	public static $post_type = 'post';
 
 	/**
@@ -14,23 +19,33 @@ class RH_Posts {
 		if ( null === $instance ) {
 			$instance = new static();
 			$instance->setup_actions();
-			$instance->setup_filters();
 		}
 		return $instance;
 	}
 
+	/**
+	 * Hook into WordPress via actions
+	 */
 	public function setup_actions() {
 		add_action( 'rh/the_loop_' . static::$post_type, array( $this, 'action_rh_the_loop' ), 10, 2 );
 	}
 
-	public function setup_filters() {
-
-	}
-
+	/**
+	 * Render post archive items while in a loop
+	 *
+	 * @param  WP_Post|integer $post  WP Post object or post ID to get data for
+	 * @param  integer $index         Current loop iteration
+	 */
 	public function action_rh_the_loop( $post, $index ) {
 		echo static::render_archive_item_from_post( $post );
 	}
 
+	/**
+	 * Render an individual archive item
+	 *
+	 * @param  array  $args Values to pass to the template to render
+	 * @return string       HTML of rendered archive item
+	 */
 	public static function render_archive_item( $args = array() ) {
 		$defaults         = array(
 			'url'           => '',
@@ -62,6 +77,13 @@ class RH_Posts {
 		return Sprig::render( 'post-archive-item.twig', $context );
 	}
 
+	/**
+	 * Render an archive item from post data
+	 *
+	 * @param  WP_Post|integer $post WP Post object or post ID to get data from
+	 * @param  array           $args Values to override what gets rendered
+	 * @return string          HTML of rendered archive item
+	 */
 	public static function render_archive_item_from_post( $post, $args = array() ) {
 		$post = get_post( $post );
 		$args = array(
@@ -74,7 +96,7 @@ class RH_Posts {
 	}
 
 	/**
-	 * Render an archive item from a WP_Query object
+	 * Render archive items from a WP_Query object
 	 *
 	 * @param  object $the_query A WP_Query object
 	 * @return string            HTML of all archive items

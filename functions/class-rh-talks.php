@@ -4,8 +4,18 @@
  */
 class RH_Talks {
 
+	/**
+	 * The post type for talks
+	 *
+	 * @var string
+	 */
 	public static $post_type = 'talk';
 
+	/**
+	 * The post meta key for storing and fetching meta data
+	 *
+	 * @var string
+	 */
 	public static $post_meta_key = 'rh-talk-details';
 
 	/**
@@ -20,6 +30,9 @@ class RH_Talks {
 		return $instance;
 	}
 
+	/**
+	 * Hook in to WordPress via actions
+	 */
 	public function setup_actions() {
 		add_action( 'init', array( $this, 'action_init' ) );
 		add_action( 'add_meta_boxes', array( $this, 'action_add_meta_boxes' ) );
@@ -28,6 +41,9 @@ class RH_Talks {
 		add_action( 'rh/the_loop_' . static::$post_type, array( $this, 'action_rh_the_loop' ), 10, 2 );
 	}
 
+	/**
+	 * Register post type
+	 */
 	public function action_init() {
 		$args = array(
 			'label'               => 'talk',
@@ -87,10 +103,15 @@ class RH_Talks {
 		}
 
 		if ( ! empty( $_REQUEST['rh-talk-details-nonce'] ) && wp_verify_nonce( $_REQUEST['rh-talk-details-nonce'], static::$post_type ) ) {
-			update_post_meta( $post_id, static::$post_meta_key, (array) $_REQUEST['rh-talk-details'] );
+			update_post_meta( $post_id, static::$post_meta_key, (array) wp_unslash( $_REQUEST['rh-talk-details'] ) );
 		}
 	}
 
+	/**
+	 * Add description label before the main content
+	 *
+	 * @param  WP_Post $post WP Post object being edited
+	 */
 	public function action_edit_form_after_title( $post ) {
 		if ( $post->post_type !== static::$post_type ) {
 			return;
@@ -98,10 +119,21 @@ class RH_Talks {
 		echo '<h2 style="padding: 24px 0 0;">Talk Description</h2>';
 	}
 
+	/**
+	 * Render talk archive items during the loop
+	 *
+	 * @param  WP_Post $post  WP Post object of the current loop item
+	 * @param  int     $index Current iteration of the loop
+	 */
 	public function action_rh_the_loop( $post, $index ) {
 		echo static::render_archive_item_from_post( $post );
 	}
 
+	/**
+	 * Render the talk details metabox
+	 *
+	 * @param  WP_Post $post WP Post object of the item being edited
+	 */
 	public function handle_talk_details_metabox( $post ) {
 		$data    = static::get_data( $post );
 		$context = array(
@@ -116,6 +148,13 @@ class RH_Talks {
 		Sprig::out( 'admin/talk-details-meta-box.twig', $context );
 	}
 
+	/**
+	 * Get normalized meta data for a talk post
+	 *
+	 * @param  WP_Post $post WP Post object to get data for
+	 * @param  string  $key  The key of a single meta value to return
+	 * @return array         Normalized post meta data
+	 */
 	public static function get_data( $post = null, $key = '' ) {
 		$post      = get_post( $post );
 		$post_meta = get_post_meta( $post->ID, static::$post_meta_key, true );
@@ -135,6 +174,12 @@ class RH_Talks {
 		return $output;
 	}
 
+	/**
+	 * Render an individual talk archive item
+	 *
+	 * @param  array  $args Values to modify what is renderd
+	 * @return string       Rendered archive item HTML
+	 */
 	public static function render_archive_item( $args = array() ) {
 		$defaults           = array(
 			'url'          => '',
@@ -162,6 +207,13 @@ class RH_Talks {
 		return Sprig::render( 'talk-archive-item.twig', $context );
 	}
 
+	/**
+	 * Render an archive item frm a post object
+	 *
+	 * @param  WP_Post|int $post WP Post object or post ID to get data for
+	 * @param  array       $args Values to override the rendered template
+	 * @return string      Rendered archive item HTML
+	 */
 	public static function render_archive_item_from_post( $post = null, $args = array() ) {
 		$post     = get_post( $post );
 		$data     = static::get_data( $post->ID );
@@ -177,7 +229,7 @@ class RH_Talks {
 	}
 
 	/**
-	 * Render an archive item from a WP_Query object
+	 * Render archive items from a WP_Query object
 	 *
 	 * @param  object $the_query A WP_Query object
 	 * @return string            HTML of all archive items
@@ -201,7 +253,13 @@ class RH_Talks {
 		return implode( "\n", $output );
 	}
 
-	public static function get_video_embed_code( $post = 0 ) {
+	/**
+	 * Get video embed code for a talk
+	 *
+	 * @param  WP_Post|integer $post WP Post object or post ID to get data for
+	 * @return string                   HTML of video embed
+	 */
+	public static function get_video_embed_code( $post = null ) {
 		$post = get_post( $post );
 		$data = static::get_data( $post->ID );
 		if ( ! empty( $data['video-embed'] ) ) {
@@ -212,6 +270,11 @@ class RH_Talks {
 		}
 	}
 
+	/**
+	 * Get talk posts that are scheduled for the future
+	 *
+	 * @return array Group of posts
+	 */
 	public static function get_upcoming_talks_posts() {
 		$args  = array(
 			'posts_per_page'         => -1,
@@ -226,6 +289,11 @@ class RH_Talks {
 		return $query->posts;
 	}
 
+	/**
+	 * Get rendered archive items for upcoming talks
+	 *
+	 * @return string HTML of archive items
+	 */
 	public static function get_upcoming_talks() {
 		$output = [];
 		$talks  = static::get_upcoming_talks_posts();
