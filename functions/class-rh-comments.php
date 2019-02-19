@@ -33,40 +33,6 @@ class RH_Comments {
 		}
 	}
 
-	public static function get_comments_section( $post_id = null ) {
-		$post          = get_post( $post_id );
-		$comment_count = static::get_comment_count( $post );
-
-		$context = array(
-			'comments_count' => $comment_count->number,
-			'comment_label'  => ucfirst( $comment_count->label ),
-			'comments_list'  => static::get_comments(),
-			'comment_form'   => static::get_comment_form(),
-		);
-		return Sprig::render( 'comments-section.twig', $context );
-	}
-
-	public static function get_comments( $args = array(), $comments = array() ) {
-		$defaults = array(
-			'style'    => 'ol',
-			'type'     => 'comment',
-			'callback' => array( __CLASS__, 'start_el' ),
-			'echo'     => false,
-		);
-		$args     = wp_parse_args( $args, $defaults );
-
-		if ( empty( $comments ) ) {
-			$comments = get_comments( array(
-				'post_id' => get_the_ID(),
-				'orderby' => 'comment_date_gmt',
-				'order'   => 'ASC',
-				'status'  => 'approve',
-			) );
-		}
-
-		return wp_list_comments( $args, $comments );
-	}
-
 	/**
 	 * Starts the comment element
 	 * Meant to be used as a callback for wp_list_comments
@@ -104,6 +70,58 @@ class RH_Comments {
 		Sprig::out( 'comment.twig', $context );
 	}
 
+
+	public static function render_comments_section( $args = array() ) {
+		$defaults = array(
+			'comments_count' => 0,
+			'comment_label'  => 'comments',
+			'comments_list'  => '',
+			'comment_form'   => '',
+		);
+		$args     = wp_parse_args( $args, $defaults );
+		$context  = array(
+			'comments_count' => $args['comments_count'],
+			'comment_label'  => ucfirst( $args['comment_label'] ),
+			'comments_list'  => $args['comments_list'],
+			'comment_form'   => $args['comment_form'],
+		);
+		return Sprig::render( 'comments-section.twig', $context );
+	}
+
+	public static function render_comments_section_by_post( $post_id = null ) {
+		$post          = get_post( $post_id );
+		$comment_count = static::get_comment_count_by_post( $post->ID );
+		$args = array(
+			'comments_count' => $comment_count->number,
+			'comment_label'  => $comment_count->label,
+			'comments_list'  => static::get_comments(),
+			'comment_form'   => static::get_comment_form( array(), $post->ID ),
+		);
+		return static::render_comments_section( $args );
+	}
+
+	public static function get_comments( $args = array(), $comments = array() ) {
+		$defaults = array(
+			'style'    => 'ol',
+			'type'     => 'comment',
+			'callback' => array( __CLASS__, 'start_el' ),
+			'echo'     => false,
+			'post_id'  => get_the_ID(),
+		);
+		$args     = wp_parse_args( $args, $defaults );
+
+		if ( empty( $comments ) ) {
+			$comments = get_comments( array(
+				'post_id' => $args['post_id'],
+				'orderby' => 'comment_date_gmt',
+				'order'   => 'ASC',
+				'status'  => 'approve',
+			) );
+		}
+
+		return wp_list_comments( $args, $comments );
+	}
+
 	public static function get_comment_form( $args = array(), $post_id = null ) {
 		$defaults = array(
 			'format'      => 'html5',
@@ -115,14 +133,42 @@ class RH_Comments {
 		return ob_get_clean();
 	}
 
-	public static function get_comment_count( $post_id = null, $comment_count = 0 ) {
-		if ( ! empty( $post_id ) ) {
-			$comment_count = get_comments_number( $post_id );
-		}
+	public static function get_comment_count( $comment_count = 0 ) {
 		return (object) array(
 			'number' => $comment_count,
 			'label'  => _n( 'comment', 'comments', $comment_count ),
 		);
+	}
+
+	public static function get_comment_count_by_post( $post_id = null ) {
+		$comment_count = get_comments_number( $post_id );
+		return static::get_comment_count( $comment_count );
+	}
+
+	public static function make_stub_comment_object( $args = array() ) {
+		$defaults    = array(
+			'comment_ID'           => '1234',
+			'comment_post_ID'      => '0',
+			'comment_author'       => 'Comment Author',
+			'comment_author_email' => 'example@example.com',
+			'comment_author_url'   => 'https://example.com',
+			'comment_author_IP'    => '1.1.1.1',
+			'comment_date'         => date( 'Y-m-d H:i:s' ),
+			'comment_date_gmt'     => date( 'Y-m-d H:i:s' ),
+			'comment_content'      => 'Hello world!',
+			'comment_karma'        => '0',
+			'comment_approved'     => '1',
+			'comment_agent'        => 'Mozilla/5.0 (iPhone; CPU iPhone OS 5_1_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9B206 Safari/7534.48.3',
+			'comment_type'         => '',
+			'comment_parent'       => '0',
+			'user_id'              => 0,
+		);
+		$args        = wp_parse_args( $args, $defaults );
+		$new_comment = new WP_Comment();
+		foreach ( $args as $key => $val ) {
+			$new_comment->{$key} = $val;
+		}
+		return $new_comment;
 	}
 }
 RH_Comments::get_instance();
