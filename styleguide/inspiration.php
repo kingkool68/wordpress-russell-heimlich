@@ -18,6 +18,7 @@ $items   = array(
 	'https://mycolor.space/?hex=%230099FF&sub=1'           => 'Classy Pallete - color scheme',
 	'https://www.sushiandrobots.com/consulting'            => 'A consulting page',
 	'https://www.studio-job.com'                           => 'Cartoony',
+	'https://s-i-l-o.fr/'                                  => 'Brutal',
 );
 $context = array(
 	'items' => $items,
