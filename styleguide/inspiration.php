@@ -19,6 +19,7 @@ $items   = array(
 	'https://www.sushiandrobots.com/consulting'            => 'A consulting page',
 	'https://www.studio-job.com'                           => 'Cartoony',
 	'https://s-i-l-o.fr/'                                  => 'Brutal',
+	'https://adamsilver.io/'                               => 'Minimal, simple layout that gets the job done'
 );
 $context = array(
 	'items' => $items,
