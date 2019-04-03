@@ -21,6 +21,8 @@
 		<exclude name="WordPress.WP.EnqueuedResourceParameters.MissingVersion"/>
 		<!-- Any kind of formatting for hook names is fine -->
 		<exclude name="WordPress.NamingConventions.ValidHookName.UseUnderscores"/>
+		<!-- Dumb are Yoda Conditions -->
+		<exclude name="WordPress.PHP.YodaConditions"/>
 
 	</rule>
 </ruleset>
