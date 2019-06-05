@@ -8,19 +8,30 @@ $stub_comment_data = array(
 		'comment_author' => 'Joe Schmo',
 		'comment_parent' => '1234',
 	),
+	array(
+		'comment_author' => 'Random Guy',
+	),
+	array(
+		'comment_author'       => 'Russell Heimlich',
+		'comment_author_email' => 'info@russellheimlich.com',
+		'comment_content'      => 'This is a comment body message. Let us see how this looks.' . "\n\n" . 'And here is another paragraph.',
+		'comment_parent'       => '4567',
+		'comment_ID'           => '45671',
+	),
 );
-$comments          = array();
+$my_comments       = array();
 foreach ( $stub_comment_data as $stub_comment ) {
-	$comments[] = RH_Comments::make_stub_comment_object( $stub_comment );
+	$my_comments[] = RH_Comments::make_stub_comment_object( $stub_comment );
 }
-$comment_count         = RH_Comments::get_comment_count( count( $comments ) );
+$comment_count         = RH_Comments::get_comment_count( count( $my_comments ) );
 $comments_section_args = array(
-	'comments_count' => 0,
-	'comment_label'  => 'comments',
-	'comment_list'   => RH_Comments::get_comments( null, $comments ),
-	'comment_form'   => '',
+	'comments_count' => $comment_count->number,
+	'comment_label'  => $comment_count->label,
+	'comments_list'  => RH_Comments::get_comments( null, $my_comments ),
+	'comment_form'   => RH_Comments::get_comment_form(),
 );
-$context               = array(
+
+$context = array(
 	'comments_section' => RH_Comments::render_comments_section( $comments_section_args ),
 );
 Sprig::out( 'styleguide-comments.twig', $context );

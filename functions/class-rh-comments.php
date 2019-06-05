@@ -164,7 +164,7 @@ class RH_Comments {
 			'user_id'              => 0,
 		);
 		$args        = wp_parse_args( $args, $defaults );
-		$new_comment = new WP_Comment();
+		$new_comment = new WP_Comment( (object) $args );
 		foreach ( $args as $key => $val ) {
 			$new_comment->{$key} = $val;
 		}
