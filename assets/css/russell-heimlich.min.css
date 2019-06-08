@@ -101,6 +101,21 @@ svg{fill:currentColor}
 .footer-social-media-item--wordpress{background-color:#21759b}
 .footer-social-media-item--stackoverflow{background-color:#f48024}
 .single-title{font-size:3em;font-weight:900;margin-bottom:.75em}
+.homepage-intro{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center}
+.homepage-intro .featured-image{margin-right:2.25rem}
+.homepage-intro .content{width:33%}
+.homepage-intro .main-statement{font-size:4.5rem;font-weight:900;margin-bottom:2rem}
+.homepage-intro p{font-size:1.25rem;font-weight:300;line-height:1.25;margin-bottom:.75rem}
+.homepage-section{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-width:80rem;margin:4rem auto}
+.homepage-section .title{font-weight:800;text-transform:uppercase;width:50%;text-align:left;font-size:3rem}
+.homepage-section .content{width:50%}
+.homepage-section .label{font-style:italic;font-size:.75rem;margin-bottom:.5rem;font-weight:100}
+.homepage-section .items{margin-bottom:2rem}
+.homepage-section .item{margin-left:-1rem}
+.homepage-section .item-link{padding:.75rem 1rem;display:block;font-size:1.375rem;line-height:1.3333}
+.homepage-section .item-link:hover,.homepage-section .item-linkfocus{background-color:#efefef}
+.homepage-section .more{text-transform:uppercase;display:inline-block;padding:1rem;font-weight:700;font-size:.875rem;margin-left:-1rem;letter-spacing:-.0357142857em}
+.homepage-section .more:hover,.homepage-section .more:focus{background-color:#efefef}
 .archive-description{margin-bottom:1.5em}
 .archive-description p{font-size:1em;margin-bottom:1em}
 .archive-section-title{font-size:3em;font-weight:700;margin-bottom:.75em}

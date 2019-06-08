@@ -1,9 +1,84 @@
 {% extends 'base.twig' %}
 
 {% block content %}
-	<img src="{{ image_directory_url|esc_url }}/russell-heimlich-with-pogo-stick.jpg" width="600">
+	<section class="homepage-intro">
+		<img
+			src="{{ image_directory_url|esc_url }}/russell-heimlich-on-pogo-stick.jpg"
+			class="featured-image"
+			width="600"
+			alt="Russell standing next to a pogo stick wearing a fancy suit"
+		>
+		<div class="content">
+			<h1 class="main-statement">Handling the technical fiddly-bits since 2006.</h1>
+			<p>A fullstack web developer with expertise on scalable, blazing-fast web projects.</p>
+			<p class="current-job-title">Currently a senior developer at <a href="https://nclud.com">nclud</a>.</p>
+		</div>
+	</section>
+
+	{% if latest_blog_posts %}
+	<section class="homepage-section">
+		<h2 class="title">
+			<a href="/blog/">Blog</a>
+		</h2>
+
+		<div class="content">
+			<p class="label">Latest Posts</p>
+			<ul class="items">
+			{% for post in latest_blog_posts %}
+				<li class="item">
+					<a href="{{ post.url|esc_url }}" class="item-link">
+						{{ post.title }}
+					</a>
+				</li>
+			{% endfor %}
+			</ul>
+
+			<p>
+				<a href="/blog/" class="more">More blog posts</a>
+			</p>
+		</div>
+	</section>
+	{% endif %}
+
+	<section class="homepage-section">
+		<h2 class="title">
+			<a href="/speaking/">Speaking</a>
+		</h2>
+
+		<div class="content">
+
+			<p class="label">Upcoming Talks</p>
+			<ul class="items">
+				<li class="item">
+					<a href="#" class="item-link">
+						Upcoming talk title!
+					</a>
+				</li>
+			</ul>
+
+
+			<p class="label">Latest Talks</p>
+			<ul class="items">
+				<li class="item">
+					<a href="#" class="item-link">
+						From Template Tags to Twig: A Journey Through WordPress Templating
+					</a>
+				</li>
+				<li class="item">
+					<a href="#" class="item-link">
+						CircleCI + AWS = Happy Deployment
+					</a>
+				</li>
+			</ul>
+			<p>
+				<a href="/talks/" class="more">More talks</a>
+			</p>
+		</div>
+
+	</section>
+
 	<p>Lead Developer at <a href="https://spiritedmedia.com/">Spirited Media</a>.</p>
-	<p>Father to  <a href="https://zadieheimlich.com">Zadie</a> and <a href="https://veraheimlich.com">Vera</a> (ofcourse they have their own websites)</p>
+	<p>Father to <a href="https://zadieheimlich.com">Zadie</a> and <a href="https://veraheimlich.com">Vera</a> (ofcourse they have their own websites)</p>
 	<p>Tinkerer on various <a href="/projects/">projects</a>.</p>
 	<p>Occasionally I <a href="/blog/">write</a>.</p>
 

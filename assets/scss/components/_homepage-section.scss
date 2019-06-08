@@ -1,0 +1,59 @@
+.homepage-section {
+	display: flex;
+	max-width: rem(1280px);
+    margin: rem(64px) auto;
+
+    .title {
+        font-weight: 800;
+        text-transform: uppercase;
+        width: 50%;
+		text-align: left;
+		font-size: rem(48px);
+    }
+
+    .content {
+        width: 50%;
+    }
+
+    .label {
+		font-style: italic;
+		font-size: rem(12px);
+		margin-bottom: rem(8px);
+		font-weight: 100;
+	}
+
+	.items {
+		margin-bottom: rem(32px);
+	}
+
+	.item {
+		margin-left: rem(-16px);
+	}
+
+    .item-link {
+		padding: rem(12px) rem(16px);
+		display: block;
+		font-size: rem(22px);
+		line-height: 1.3333;
+
+		&:hover,
+		&focus {
+			background-color: #efefef;
+		}
+	}
+
+	.more {
+		text-transform: uppercase;
+		display: inline-block;
+		padding: rem(16px);
+		font-weight: 700;
+		font-size: rem(14px);
+		margin-left: rem(-16px);
+		letter-spacing: em(-0.5px, 14px);
+
+		&:hover,
+		&:focus {
+			background-color: #efefef;
+		}
+	}
+}
