@@ -1,10 +1,12 @@
 .site-title {
-	font-size: em(36px);
-	letter-spacing: em(-1px, 36px);
+	font-size: 20vw;
+	letter-spacing: rem(-1px);
 	font-weight: 900;
+	text-align: center;
+	white-space: nowrap;
 
 	a {
-		padding: em(36px, 36px);
+		padding-bottom: rem(36px);
 		display: block;
 	}
 

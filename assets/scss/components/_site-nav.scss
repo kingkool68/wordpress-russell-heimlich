@@ -1,18 +1,28 @@
-.site-nav {
+.something {
 	position: fixed;
 	height:100vh;
 	background-color: #0099ff;
 	right: 0;
-	width: 20%;
+	width: 20vw;
 
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	// justify-content: center;
+	padding-top: 1.55vw;
+
+	p {
+		color: $white;
+		text-transform: uppercase;
+		font-size: 7.5vw;
+		font-weight: 900;
+		line-height: 1.166;
+		text-align: center;
+	}
 
 	a {
 		display: block;
 		font-size: rem(32px);
-		padding: rem(45px) rem(18px);
+		padding: rem(16px) rem(8px);
 		color: $white;
 		font-weight: 200;
 
