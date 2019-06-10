@@ -1,0 +1,24 @@
+.site-nav {
+	position: fixed;
+	height:100vh;
+	background-color: #0099ff;
+	right: 0;
+	width: 20%;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	a {
+		display: block;
+		font-size: rem(32px);
+		padding: rem(45px) rem(18px);
+		color: $white;
+		font-weight: 200;
+
+		&:hover,
+		&focus {
+			background-color: $light-gray;
+		}
+	}
+}

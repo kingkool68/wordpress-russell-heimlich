@@ -12,14 +12,22 @@
 		{% block head '' %}
 	</head>
 	<body {{ body_class() }}>
-		{{ get_header() }}
+		<a id="top" href="#content" class="screen-reader-text skip-to-content-link">Skip to Content</a>
+		<div class="wrapper">
+			{{ get_header() }}
 
-		<div class="main-content">
-			<main>
-				{% block content '' %}
-			</main>
+			<div class="main-content">
+				<header class="site-header">
+					<h1 class="site-title">
+						<a href="{{ site_url|esc_url }}">Russell Heimlich</a>
+					</h1>
+				</header>
+				<main>
+					{% block content '' %}
+				</main>
+			</div>
+			{{ get_footer() }}
 		</div>
-		{{ get_footer() }}
 		{{ wp_footer() }}
 
 	</body>

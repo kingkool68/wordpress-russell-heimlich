@@ -1,15 +1,6 @@
-.site-header {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	background-color: $gray;
-
-	box-shadow: 0px 0px 10px 0px $black;
-}
-
 .site-title {
 	font-size: em(36px);
-	letter-spacing: em(-2px, 36px);
+	letter-spacing: em(-1px, 36px);
 	font-weight: 900;
 
 	a {
@@ -20,18 +11,5 @@
 	&:hover,
 	&:focus {
 		background-color: $light-gray;
-	}
-}
-
-.site-nav {
-	a {
-		display: inline-block;
-		font-size: em(18px);
-		padding: em(45px, 18px) em(18px, 18px);
-
-		&:hover,
-		&focus {
-			background-color: $light-gray;
-		}
 	}
 }

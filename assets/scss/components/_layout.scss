@@ -1,13 +1,13 @@
 .main-content {
 	padding: em(40px);
-}
-
-.the-header {
-	max-width: em(1024px);
-	margin: 0 auto;
+	width: 80%;
 }
 
 .the-content {
 	max-width: em(700px);
 	margin: 0 auto;
+}
+
+.site-footer {
+	width: 80%;
 }
