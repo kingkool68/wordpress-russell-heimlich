@@ -21,6 +21,7 @@ $items   = array(
 	'https://s-i-l-o.fr/'                                  => 'Brutal',
 	'https://adamsilver.io/'                               => 'Minimal, simple layout that gets the job done',
 	'http://www.adamriddle.com/'                           => 'Case studies, cards, minimal layout',
+	'https://www.zachleat.com/web/best-of/'                => 'How to calculate the most popular via Google Analytics data. See the archives for ideas on how to display it',
 );
 $context = array(
 	'items' => $items,
