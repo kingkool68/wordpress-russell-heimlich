@@ -34,9 +34,9 @@ a{color:#000}
 .wysiwyg ol{list-style:decimal}
 .wysiwyg li{font-size:1.3125em;line-height:1.6;margin-bottom:.5952380952em}
 .wysiwyg li li{font-size:1em}
-.main-content{padding:0 2.5rem 2.5rem;width:80vw}
+.main-content{padding:0 2.5rem 2.5rem;width:77vw}
 .the-content{max-width:43.75em;margin:0 auto}
-.site-footer{width:80vw}
+.site-footer{width:77vw}
 img{max-width:100%;height:auto}
 .alignleft{float:none}
 .alignright{float:none}
@@ -59,10 +59,10 @@ svg{fill:currentColor}
 .site-title{font-size:20vw;letter-spacing:-.0625rem;font-weight:900;text-align:center;white-space:nowrap}
 .site-title a{padding-bottom:2.25rem;display:block}
 .site-title:hover,.site-title:focus{background-color:#efefef}
-.something{position:fixed;height:100vh;background-color:#09f;right:0;width:20vw;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;padding-top:1.55vw}
+.something{position:fixed;height:100vh;background-color:#09f;right:0;width:22vw;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;padding-top:1.55vw}
 .something p{color:#fff;text-transform:uppercase;font-size:7.5vw;font-weight:900;line-height:1.166;text-align:center}
 .something a{display:block;font-size:2rem;padding:1rem .5rem;color:#fff;font-weight:200}
-.something a:hover,.something afocus{background-color:#efefef}
+.something a:hover,.something afocus{background-color:#efefef;color:#09f}
 .comments{padding-top:2em;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-align:start;-webkit-align-items:flex-start;-ms-flex-align:start;align-items:flex-start;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between}
 .comments .comment-count-title{font-size:1.75em;margin:.2857142857em 0;padding-left:1.1428571429em;-webkit-box-flex:1;-webkit-flex:1 100%;-ms-flex:1 100%;flex:1 100%}
 .comments .comment-form-wrapper{-webkit-box-flex:1;-webkit-flex:1 40%;-ms-flex:1 40%;flex:1 40%;position:-webkit-sticky;position:sticky;top:0;padding:0 2em}
