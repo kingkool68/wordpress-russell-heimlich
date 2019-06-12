@@ -1,10 +1,11 @@
 .archive-item {
 	display: block;
-	margin-bottom: em(36px);
+	margin-left: rem(-16px);
+	padding: rem(16px) rem(16px);
 
-	&:hover .archive-item-title,
-	&:focus .archive-item-title {
-		text-decoration: underline;
+	&:hover,
+	&:focus {
+		background-color: $light-gray;
 	}
 }
 
@@ -23,6 +24,7 @@
 
 .archive-item-title {
 	font-size: em(28px);
+	line-height: 1.25;
 	font-weight: 700;
 	padding-top: em(4px, 28px);
 	margin-bottom: em(8px, 28px);
