@@ -1,3 +1,9 @@
 a {
 	color: $black;
+	transition: color 200ms, background 200ms;
+
+	&:hover,
+	&:focus {
+		color: $blue;
+	}
 }
