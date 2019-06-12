@@ -27,15 +27,13 @@ a{text-decoration:none}
 .invisible{visibility:hidden !important}
 .hidden{border:0;clip:rect(0 0 0 0);height:.0625em;margin:-.0625em;overflow:hidden;padding:0;position:absolute;width:.0625em}
 a{color:#000}
-.wysiwyg p{font-size:1.3125em;line-height:1.6;margin-bottom:1.1904761905em}
+.wysiwyg p{font-size:1.3125rem;line-height:1.6;margin-bottom:1.5625rem;max-width:60ch}
 .wysiwyg a{text-decoration:underline}
-.wysiwyg ul,.wysiwyg ol{padding-left:1em;margin-bottom:1.5625em}
+.wysiwyg ul,.wysiwyg ol{padding-left:1rem;margin-bottom:1.5625rem}
 .wysiwyg ul{list-style:disc}
 .wysiwyg ol{list-style:decimal}
-.wysiwyg li{font-size:1.3125em;line-height:1.6;margin-bottom:.5952380952em}
-.wysiwyg li li{font-size:1em}
+.wysiwyg li{font-size:1.3125rem;max-width:60ch;line-height:1.6;margin-bottom:.5952380952em}
 .main-content{padding:0 2.5rem 2.5rem;width:77vw}
-.the-content{max-width:43.75em;margin:0 auto}
 .site-footer{width:77vw}
 img{max-width:100%;height:auto}
 .alignleft{float:none}
