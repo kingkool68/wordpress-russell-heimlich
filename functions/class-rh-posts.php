@@ -117,7 +117,7 @@ class RH_Posts {
 			$output[] = static::render_archive_item_from_post( $post );
 		endwhile;
 		wp_reset_postdata();
-		return implode( "\n", $output );
+		return $output;
 	}
 }
 
