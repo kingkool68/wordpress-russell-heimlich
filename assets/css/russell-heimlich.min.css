@@ -29,7 +29,7 @@ a{text-decoration:none}
 a{color:#000;-webkit-transition:color 200ms,background 200ms;-o-transition:color 200ms,background 200ms;transition:color 200ms,background 200ms}
 a:hover,a:focus{color:#09f}
 .wysiwyg p{font-size:1.3125rem;line-height:1.6;margin-bottom:1.5625rem;max-width:60ch}
-.wysiwyg a{text-decoration:underline}
+.wysiwyg a{text-decoration:underline;-webkit-text-decoration-color:#09f;text-decoration-color:#09f}
 .wysiwyg ul,.wysiwyg ol{padding-left:1rem;margin-bottom:1.5625rem}
 .wysiwyg ul{list-style:disc}
 .wysiwyg ol{list-style:decimal}
