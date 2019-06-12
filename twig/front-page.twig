@@ -24,13 +24,7 @@
 		<div class="content">
 			<p class="label">Latest Posts</p>
 			<ul class="items">
-			{% for post in latest_blog_posts %}
-				<li class="item">
-					<a href="{{ post.url|esc_url }}" class="item-link">
-						{{ post.title }}
-					</a>
-				</li>
-			{% endfor %}
+				{{ latest_blog_posts }}
 			</ul>
 
 			<p>

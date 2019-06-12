@@ -15,18 +15,7 @@
 		<a id="top" href="#content" class="screen-reader-text skip-to-content-link">Skip to Content</a>
 		<div class="wrapper">
 
-			<div class="something">
-				<p>Heim<br>lich</p>
-				<nav class="site-nav">
-					<a href="/blog/" title="Thoughts and Random Musings">Blog</a>
-					{# }<a href="/projects/" title="Side Projects">Projects</a> #}
-					<a href="/speaking/" title="Invited Talks and Speaking Engagements">Speaking</a>
-					<a href="/projects/">Projects</a>
-				</nav>
-				<form>
-					<input type="search">
-				</form>
-			</div>
+			{{ get_sidebar( 'site-nav' ) }}
 
 			<div class="main-content">
 				{{ get_header() }}
