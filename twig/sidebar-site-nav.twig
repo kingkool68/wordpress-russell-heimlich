@@ -7,7 +7,7 @@
 	</nav>
 	<form action="{{ site_url|esc_url }}" class="site-search">
 		<label for="site-search-input" class="screen-reader-text">Search the entire site</label>
-		<input type="search" id="site-search-input" class="input" name="s" placeholder="Search">
+		<input type="search" id="site-search-input" class="input" name="s" placeholder="Search" value="{{ search_query|esc_attr }}">
 		<input type="submit" value="Search" class="button screen-reader-text">
 	</form>
 </div>
