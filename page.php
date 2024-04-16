@@ -1,10 +1,6 @@
-<?php get_header(); ?>
-
-<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-	<main class="post">
-		<h1><?php the_title(); ?></h1>
-		<?php the_content(); ?>
-	</main>
-<?php endwhile; endif; ?>
-
-<?php get_footer(); ?>
+<?php
+$context = array(
+	'the_title'   => get_the_title(),
+	'the_content' => apply_filters( 'the_content', get_the_content() ),
+);
+Sprig::out( 'page.twig', $context );
