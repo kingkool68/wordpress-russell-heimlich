@@ -29,7 +29,6 @@ if ( ! function_exists( 'wp_dump' ) ) :
 	}
 endif;
 
-
 if ( ! function_exists( 'wp_log' ) ) :
 	/**
 	 * A better error_log() function

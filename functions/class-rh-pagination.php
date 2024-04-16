@@ -17,22 +17,36 @@ class RH_Pagination {
 	/**
 	 * Render pagination
 	 *
-	 * @param  array  $args Arguments to modify what is rendered
+	 * @param  array $args Arguments to modify what is rendered
 	 * @return string       HTML
 	 */
 	public static function render( $args = array() ) {
-		$data     = self::get_data( $args );
+		$data     = static::get_data( $args );
 		$defaults = array(
-			'next_url'          => $data->next_url,
-			'next_page_num'     => $data->next_page_num,
-			'next_text'         => 'Older Posts',
-			'previous_url'      => $data->previous_url,
-			'previous_text'     => 'Newer Posts',
-			'previous_page_num' => $data->previous_page_num,
-			'current'           => $data->current_page,
-			'links'             => $data->links,
+			'next_url'           => $data->next_url,
+			'next_page_num'      => $data->next_page_num,
+			'next_text'          => 'Next <span class="screen-reader-text">Page</span>',
+			'next_icon'          => '',
+			'next_icon_slug'     => 'right-arrow',
+			'previous_url'       => $data->previous_url,
+			'previous_text'      => 'Previous <span class="screen-reader-text">Page</span>',
+			'previous_icon'      => '',
+			'previous_icon_slug' => 'right-arrow',
+			'previous_page_num'  => $data->previous_page_num,
+			'current'            => $data->current_page,
+			'links'              => $data->links,
+			'total_pages_num'    => $data->total_pages_num,
+			'total_pages_url'    => $data->total_pages_url,
+			'start_num'          => $data->start_num,
 		);
 		$context  = wp_parse_args( $args, $defaults );
+		if ( empty( $context['next_icon'] ) && ! empty( $context['next_icon_slug'] ) ) {
+			$context['next_icon'] = RH_SVG::get_icon( $context['next_icon_slug'] );
+		}
+		if ( empty( $context['previous_icon'] ) && ! empty( $context['previous_icon_slug'] ) ) {
+			$context['previous_icon'] = RH_SVG::get_icon( $context['previous_icon_slug'] );
+		}
+
 		return Sprig::render( 'pagination.twig', $context );
 	}
 
@@ -40,7 +54,7 @@ class RH_Pagination {
 	 * Render pagination from a WP Query
 	 *
 	 * @param  WP_Query $the_query The query object to use
-	 * @param  array   $args       Arguments to modify what is rendered
+	 * @param  array    $args       Arguments to modify what is rendered
 	 * @return string              HTML
 	 * @throws Exception           If $the_query is not a WP_Query object
 	 */
@@ -52,31 +66,52 @@ class RH_Pagination {
 		if ( ! $the_query instanceof WP_Query ) {
 			throw new Exception( '$the_query is not a WP_Query object!' );
 		}
-
-		if ( isset( $the_query->found_posts ) && $the_query->found_posts <= 0 ) {
-			return '';
+		if ( empty( $the_query->max_num_pages ) || $the_query->max_num_pages <= 1 ) {
+			return;
 		}
 		$args['total_pages'] = $the_query->max_num_pages;
-		return self::render( $args );
+		return static::render( $args );
+	}
+
+	/**
+	 * Get normalized data needed for rendering pagination via a wp_query
+	 *
+	 * @param  WP_Query $the_query The query object to use
+	 * @param  array    $args       Arguments to modify what is rendered
+	 * @return object              Normalized pagination data
+	 * @throws Exception           If $the_query is not a WP_Query object
+	 */
+	public static function get_data_from_wp_query( $the_query = false, $args = array() ) {
+		global $wp_query;
+		if ( ! $the_query ) {
+			$the_query = $wp_query;
+		}
+		if ( ! $the_query instanceof WP_Query ) {
+			throw new Exception( '$the_query is not a WP_Query object!' );
+		}
+		$args['total_pages'] = $the_query->max_num_pages;
+		return static::get_data( $args );
 	}
 
 	/**
 	 * Get normalized data needed for rendering pagination
 	 *
-	 * @param  array  $args The data to normalize
+	 * @param  array $args The data to normalize
 	 * @return object       Normalized pagination data
 	 */
 	public static function get_data( $args = array() ) {
 		global $wp_rewrite;
-		$output = [
-			'total_pages'       => 0,
+		$output = array(
+			'total_pages_num'   => 0,
+			'total_pages_url'   => false,
 			'current_page'      => 1,
+			'start_num'         => 1,
 			'next_url'          => false,
 			'next_page_num'     => -1,
 			'previous_url'      => false,
 			'previous_page_num' => 1,
-			'links'             => [],
-		];
+			'links'             => array(),
+		);
 
 		// Setting up default values based on the current URL
 		$current_page = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;
@@ -96,25 +131,25 @@ class RH_Pagination {
 		} else {
 			$format .= '?paged=%#%';
 		}
-		$defaults = [
+		$defaults = array(
 			'base'         => $pagenum_link, // http://example.com/all_posts.php%_% : %_% is replaced by format (below)
 			'format'       => $format, // ?page=%#% : %#% is replaced by the page number
 			'total_pages'  => 1,
 			'current_page' => $current_page,
 			'show_all'     => false,
-			'range'        => 5,  // How many pagination links to show (should be an odd number)
-			'add_args'     => [], // Array of query args to add
-		];
+			'range'        => 4,  // How many pagination links to show (should be an odd number)
+			'add_args'     => array(), // Array of query args to add
+		);
 		$args     = wp_parse_args( $args, $defaults );
 
 		// Who knows what else people pass in $args
-		$output['total_pages'] = intval( $args['total_pages'] );
-		if ( $output['total_pages'] < 2 ) {
+		$output['total_pages_num'] = intval( $args['total_pages'] );
+		if ( $output['total_pages_num'] < 2 ) {
 			$output = apply_filters( 'rh/pagination/get_data', $output, $args );
 			return (object) $output;
 		}
 		$current_page           = absint( $args['current_page'] );
-		$total_pages            = absint( $args['total_pages'] );
+		$total_pages_num        = absint( $args['total_pages'] );
 		$output['current_page'] = $current_page;
 		$range                  = intval( $args['range'] );
 		// Out of bounds?  Make it the default
@@ -122,7 +157,7 @@ class RH_Pagination {
 			$range = $defaults['range'];
 		}
 		if ( ! is_array( $args['add_args'] ) ) {
-			$args['add_args'] = [];
+			$args['add_args'] = array();
 		}
 
 		// Merge additional query vars found in the original URL into 'add_args' array
@@ -142,20 +177,23 @@ class RH_Pagination {
 			$args['add_args'] = array_merge( $args['add_args'], urlencode_deep( $url_query_args ) );
 		}
 
+		$output['total_pages_url'] = static::get_pagination_link( $output['total_pages_num'], $args['base'], $args['format'], $args['add_args'] );
+
 		$previous_page_num = $current_page - 1;
 		if ( $previous_page_num > 0 ) {
 			$output['previous_page_num'] = $previous_page_num;
-			$output['previous_url']      = self::get_pagination_link( $previous_page_num, $args['base'], $args['format'], $args['add_args'] );
+			$output['previous_url']      = static::get_pagination_link( $previous_page_num, $args['base'], $args['format'], $args['add_args'] );
 		}
 		$next_page_num = $current_page + 1;
-		if ( $next_page_num <= $total_pages ) {
+		if ( $next_page_num <= $total_pages_num ) {
 			$output['next_page_num'] = $next_page_num;
-			$output['next_url']      = self::get_pagination_link( $next_page_num, $args['base'], $args['format'], $args['add_args'] );
+			$output['next_url']      = static::get_pagination_link( $next_page_num, $args['base'], $args['format'], $args['add_args'] );
 		}
-		if ( $current_page > ( $total_pages - $range ) ) {
+		if ( $current_page > ( $total_pages_num - $range ) ) {
 			// We're near the end
-			$start = max( $total_pages - $range + 1, 1 );
-			$end   = $total_pages;
+			$start                     = max( $total_pages_num - $range + 1, 1 );
+			$end                       = $total_pages_num;
+			$output['total_pages_url'] = '';
 		} elseif ( $current_page < $range ) {
 			// We're near the beginning
 			$start = 1;
@@ -170,14 +208,15 @@ class RH_Pagination {
 			if ( intval( $i ) === intval( $current_page ) ) {
 				$is_current = true;
 			}
-			$output['links'][] = (object) [
+			$output['links'][] = (object) array(
 				'num'        => intval( $i ),
-				'url'        => self::get_pagination_link( $i, $args['base'], $args['format'], $args['add_args'] ),
+				'url'        => static::get_pagination_link( $i, $args['base'], $args['format'], $args['add_args'] ),
 				'is_current' => $is_current,
-			];
+			);
 		}
-		$output['range'] = $range;
-		$output          = apply_filters( 'rh/pagination/get_data', $output, $args );
+		$output['range']     = $range;
+		$output['start_num'] = intval( $start );
+		$output              = apply_filters( 'rh/pagination/get_data', $output, $args );
 		return (object) $output;
 	}
 
@@ -191,7 +230,7 @@ class RH_Pagination {
 	 * @param  string  $fragment   Fragment to add to the end of a link
 	 * @return string              The link URL
 	 */
-	public static function get_pagination_link( $num = 0, $base = '', $format = '', $query_args = [], $fragment = '' ) {
+	public static function get_pagination_link( $num = 0, $base = '', $format = '', $query_args = array(), $fragment = '' ) {
 		if ( 1 === $num ) {
 			$format = '';
 		}

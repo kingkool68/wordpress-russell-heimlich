@@ -27,17 +27,20 @@ class RH_SVG {
 	 * Helper function for fetching SVG icons
 	 *
 	 * @param  string $icon  Name of the SVG file in the icons directory
+	 * @param array  $args Arguments to modify the defaults passed to static::get_svg()
+	 *
 	 * @return string        Inline SVG markup
 	 */
-	public static function get_icon( $icon = '' ) {
+	public static function get_icon( $icon = '', $args = array() ) {
 		if ( ! $icon ) {
 			return;
 		}
-		$path = get_template_directory() . '/assets/icons/' . $icon . '.svg';
-		$args = [
+		$path     = get_template_directory() . '/assets/icons/' . $icon . '.svg';
+		$defaults = array(
 			'css_class' => 'icon icon-' . $icon,
-		];
-		return self::get_svg( $path, $args );
+		);
+		$args     = wp_parse_args( $args, $defaults );
+		return static::get_svg( $path, $args );
 	}
 
 	/**
@@ -49,7 +52,7 @@ class RH_SVG {
 		$directory = get_template_directory() . '/assets/icons/';
 		$cache_key = 'icons';
 		$callback  = array( __CLASS__, 'get_icon' );
-		return self::get_all_svgs( $directory, $cache_key, $callback );
+		return static::get_all_svgs( $directory, $cache_key, $callback );
 	}
 
 	/**
@@ -63,22 +66,34 @@ class RH_SVG {
 		if ( ! $path ) {
 			return;
 		}
-		$defaults  = array(
-			'role'      => 'image',
-			'css_class' => '',
+		$defaults = array(
+			'role'          => 'img',
+			'css_class'     => '',
+			'add_css_class' => '',
 		);
-		$args      = wp_parse_args( $args, $defaults );
-		$role_attr = $args['role'];
-		$css_class = $args['css_class'];
-		if ( is_array( $css_class ) ) {
-			$css_class = implode( ' ', $css_class );
+		$args     = wp_parse_args( $args, $defaults );
+
+		if ( ! empty( $args['add_css_class'] ) ) {
+			if ( ! is_array( $args['add_css_class'] ) ) {
+				$args['add_css_class'] = explode( ' ', $args['add_css_class'] );
+			}
+			if ( ! is_array( $args['css_class'] ) ) {
+				$args['css_class'] = explode( ' ', $args['css_class'] );
+			}
+
+			$args['css_class'] = array_merge( $args['css_class'], $args['add_css_class'] );
+		}
+
+		if ( is_array( $args['css_class'] ) ) {
+			$args['css_class'] = array_unique( $args['css_class'], SORT_STRING );
+			$args['css_class'] = implode( ' ', $args['css_class'] );
 		}
 		if ( file_exists( $path ) ) {
 			// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 			$svg = file_get_contents( $path );
 			// Strip the width and height attributes so size can be scaled via CSS font-size
-			$svg = preg_replace( '/(width|height)="[\d\.]+"/i', '', $svg );
-			$svg = str_replace( '<svg ', '<svg class="' . esc_attr( $css_class ) . '" role="' . esc_attr( $role_attr ) . '" ', $svg );
+			// $svg = preg_replace( '/\s(width|height)="[\d\.]+"/i', '', $svg );
+			$svg = str_replace( '<svg ', '<svg class="' . esc_attr( $args['css_class'] ) . '" role="' . esc_attr( $args['role'] ) . '" ', $svg );
 			return $svg;
 		}
 	}
@@ -94,9 +109,9 @@ class RH_SVG {
 	public static function get_all_svgs( $directory = '', $cache_key = '', $callback = '' ) {
 		if (
 			! empty( $cache_key ) &&
-			! empty( self::$all_svg_cache[ $cache_key ] )
+			! empty( static::$all_svg_cache[ $cache_key ] )
 		) {
-			return self::$all_svg_cache[ $cache_key ];
+			return static::$all_svg_cache[ $cache_key ];
 		}
 		$svgs = array();
 		if ( ! $directory || ! file_exists( $directory ) ) {
@@ -105,6 +120,11 @@ class RH_SVG {
 		if ( ! is_callable( $callback ) ) {
 			$callback = array( __CLASS__, 'get_svg' );
 		}
+
+		$url_search    = get_template_directory();
+		$url_replace   = get_template_directory_uri();
+		$url_directory = str_replace( $url_search, $url_replace, $directory );
+
 		$iterator = new DirectoryIterator( $directory );
 		foreach ( $iterator as $file ) {
 			if ( ! $file->isFile() ) {
@@ -119,11 +139,12 @@ class RH_SVG {
 			$svgs[ $filename ] = (object) array(
 				'svg'   => $svg,
 				'label' => $filename,
+				'url'   => $url_directory . $file->getFilename(),
 			);
 		}
 		ksort( $svgs );
 		if ( ! empty( $cache_key ) ) {
-			self::$all_svg_cache[ $cache_key ] = $svgs;
+			static::$all_svg_cache[ $cache_key ] = $svgs;
 		}
 		return $svgs;
 	}
