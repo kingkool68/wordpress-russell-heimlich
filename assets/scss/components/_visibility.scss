@@ -1,45 +1,10 @@
-// Hide visually and from screen readers
-.hide { display: none !important; }
-
-// Hide visually and from screen readers, but maintain layout
-.invisible { visibility: hidden !important; }
-
-// Use .hidden to visually hide an element but still make it accessible to screen readers.
-.hidden {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-}
-
-
-
-
 /* Use .hide for completely hidding an element from visual and screen readers */
-.hide {
-	display: none !important;
+.hide,
+.js .hide-if-js {
+    display: none !important;
 }
 
 // Hide visually and from screen readers, but maintain layout
 .invisible {
-  visibility: hidden !important;
-}
-
-/* Use .hidden to visual hide an element but still making it accessible to screen readers. */
-@mixin hidden {
-	border: 0;
-	clip: rect(0 0 0 0);
-	height: em(1px);
-	margin: em(-1px);
-	overflow: hidden;
-	padding: 0;
-	position: absolute;
-	width: em(1px);
-}
-.hidden {
-	@include hidden;
+    visibility: hidden !important;
 }

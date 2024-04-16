@@ -2,11 +2,8 @@
 
 {% block content %}
 
-	<article class="the-content">
+	<article>
 		<header class="the-header">
-			{% if comment_count %}
-				<small>{{ comment_count }} {{ comment_label }}</small>
-			{% endif %}
 			<h1 class="single-title">{{ the_title }}</h1>
 		</header>
 
@@ -22,7 +19,5 @@
 			{% endif %}
 		</footer>
 	</article>
-
-	{{ comments_section }}
 
 {% endblock %}

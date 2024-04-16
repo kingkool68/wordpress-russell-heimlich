@@ -1,14 +1,8 @@
-<footer class="site-footer">
-	<p class="footer-social-media-items">
-		{{ social_media_items }}
-	</p>
-	<p>Other Links</p>
-	<ul>
-		<li><a href="{{ site_url|esc_url }}/contact/">Contact</a></li>
-		<li><a href="{{ site_url|esc_url }}/money/">Money</a></li>
-		<li><a href="{{ site_url|esc_url }}/resume/">Resume</a></li>
-		<li><a href="{{ site_url|esc_url }}/colophon/">Colophon</a></li>
-		<li><a href="{{ site_url|esc_url }}/styleguide/">Styleguide</a></li>
-	</ul>
-	<p>&copy; {{ year }}</p>
+<footer class="footer" id="footer">
+	<div class="inner">
+		<a href="{{ site_url|esc_url }}">
+			<span class="screen-reader-text">{{ site_title }}</span>
+		</a>
+		<p class="copyright">&copy; {{ year }} </p>
+	</div>
 </footer>

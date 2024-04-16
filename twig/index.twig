@@ -1,17 +1,11 @@
 {% extends 'base.twig' %}
 
 {% block content %}
+	<section class="archive-description">
+		<p>(Index)</p>
+	</section>
 
-	<div class="the-content">
-		<section class="archive-description">
-			<p>(Index)</p>
-		</section>
-
-		<section>
-			{{ the_loop }}
-		</section>
-	</div>
-
+	{{ the_loop }}
 	{{ pagination }}
 
 {% endblock %}

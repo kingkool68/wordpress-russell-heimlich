@@ -1,18 +1,51 @@
-<a href="{{ url|esc_url }}" class="archive-item archive-item--post">
-	{% if display_date or comment_count %}
-		<p class="archive-item-meta">
-			{% if display_date %}
-				<time class="archive-item-date" datetime="{{ machine_date|esc_attr }}">{{ display_date }}</time>
+<article class="post-archive-item">
+	<div class="media">
+		{% if the_image %}
+			{% if the_url %}
+				<a href="{{ the_url|esc_url }}">
+					{{ the_image }}
+				</a>
+			{% else %}
+				{{ the_image }}
 			{% endif %}
+		{% else %}
+			<div class="image-placeholder"></div>
+		{% endif %}
+	</div>
 
-			{% if comment_count %}
-				<span class="archive-item-separator">&bull;</span>
-				<span class="archive-item-comment-count">{{ comment_count }} {{ comment_label }}</span>
-			{% endif %}
-		</p>
-	{% endif %}
+	<div class="content">
+		{% if the_title %}
+			<h2 class="the-title">
+				{% if the_url %}
+					<a href="{{ the_url|esc_url }}">{{ the_title }}</a>
+				{% else %}
+					{{ the_title }}
+				{% endif %}
+			</h2>
+		{% endif %}
 
-	{% if title %}
-		<h2 class="archive-item-title">{{ title }}</h2>
-	{% endif %}
-</a>
+		{% if display_date %}
+			<div class="the-meta">
+				{% if display_date or the_categories %}
+					<p class="date-categories">
+						{% if display_date %}
+							<time class="the-date" datetime="{{ machine_date|esc_attr }}">{{ display_date }}</time>
+						{% endif %}
+
+						{% if display_date and the_categories %} <span class="separator">&bull;</span> {% endif %}
+
+						{% for item in the_categories %}
+							<a href="{{ item.url|esc_url }}">{{ item.name }}</a> {% if not loop.last %},{% endif %}
+						{% endfor %}
+					</p>
+				{% endif %}
+			</div>
+		{% endif %}
+
+		{% if the_excerpt %}
+			<div class="the-excerpt">
+				{{ the_excerpt }}
+			</div>
+		{% endif %}
+	</div>
+</article>
