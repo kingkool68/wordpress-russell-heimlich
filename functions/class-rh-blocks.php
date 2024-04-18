@@ -163,12 +163,12 @@ class RH_Blocks {
 			if ( is_string( $c['attributes'] ) ) {
 				$c['attributes'] = array( $c['attributes'] );
 			}
-			$c['attributes'] = CoderPad_Helpers::build_html_attributes( $c['attributes'] );
+			$c['attributes'] = RH_Helpers::build_html_attributes( $c['attributes'] );
 		} else {
 			$c['attributes'] = '';
 		}
 		if ( ! empty( $c['additional_css_classes'] ) ) {
-			$c['additional_css_classes'] = CoderPad_Helpers::css_class( '', $c['additional_css_classes'] );
+			$c['additional_css_classes'] = RH_Helpers::css_class( '', $c['additional_css_classes'] );
 		}
 		return $c;
 	}

@@ -22,6 +22,7 @@ class RH_Media {
 	 */
 	public function setup_actions() {
 		add_action( 'init', array( $this, 'action_init' ) );
+		add_action( 'wp_head', array( $this, 'action_wp_head' ) );
 	}
 
 	/**
@@ -33,6 +34,7 @@ class RH_Media {
 		add_filter( 'embed_oembed_html', array( $this, 'filter_oembed_lite_youtube' ), 10, 3 );
 		add_filter( 'oembed_result', array( $this, 'filter_oembed_lite_youtube' ), 11, 2 );
 		add_filter( 'upload_mimes', array( $this, 'filter_upload_mimes' ), 10 );
+		add_filter( 'attachment_fields_to_edit', array( $this, 'filter_attachment_fields_to_edit' ), 10, 2 );
 	}
 
 	/**
@@ -57,7 +59,25 @@ class RH_Media {
 			$ver       = null,
 			$in_footer = true
 		);
+	}
 
+	/**
+	 * Output a og:logo meta element for Clearbit
+	 *
+	 * @link https://clearbit.com/blog/open-graph-logo
+	 */
+	public function action_wp_head() {
+		$site_icon_id = (int) get_option( 'site_icon' );
+		if ( empty( $site_icon_id ) ) {
+			return;
+		}
+		$data = wp_get_attachment_metadata( $site_icon_id );
+		if ( empty( $data ) ) {
+			return;
+		}
+		$size_value = $data['width'] . 'x' . $data['height'];
+		$url        = wp_get_attachment_image_url( $site_icon_id, 'full' );
+		echo '<meta property="og:logo" content="' . esc_url( $url ) . '" size="' . esc_attr( $size_value ) . '">' . "\n";
 	}
 
 	/**
@@ -119,21 +139,29 @@ class RH_Media {
 			return $return;
 		}
 
-		$url_parts = wp_parse_url( $url );
-		// If there is no query string, then bail
-		if ( empty( $url_parts['query'] ) ) {
+		$videoid      = '';
+		$video_params = '';
+		$url_parts    = wp_parse_url( $url );
+		if ( ! empty( $url_parts['host'] ) && strtolower( $url_parts['host'] ) === 'youtu.be' ) {
+			$path    = $url_parts['path'];
+			$path    = str_replace( '/', '', $path );
+			$videoid = $path;
+		}
+
+		if ( ! empty( $url_parts['query'] ) ) {
+			parse_str( $url_parts['query'], $query_string_parts );
+			if ( ! empty( $query_string_parts['v'] ) ) {
+				$videoid = $query_string_parts['v'];
+				unset( $query_string_parts['v'] );
+			}
+			$video_params = $query_string_parts;
+		}
+		if ( empty( $videoid ) ) {
 			return $return;
 		}
-		parse_str( $url_parts['query'], $query_string_parts );
-		// If there is no video id (i.e. ?v=abc123), then bail
-		if ( empty( $query_string_parts['v'] ) ) {
-			return $return;
-		}
-		$videoid = $query_string_parts['v'];
-		unset( $query_string_parts['v'] );
 		$embed_args = array(
 			'videoid' => $videoid,
-			'params'  => $query_string_parts,
+			'params'  => $video_params,
 			'title'   => $data->title,
 			'url'     => $url,
 		);
@@ -163,6 +191,21 @@ class RH_Media {
 	public function filter_upload_mimes( $mimes = array() ) {
 		$mimes['svg'] = 'image/svg+xml';
 		return $mimes;
+	}
+
+	/**
+	 * Add Attachment ID field to edit screens to make it wasy to copy
+	 *
+	 * @param  array   $form_fields The form fields to modify
+	 * @param  WP_Post $post The attachment post
+	 */
+	public function filter_attachment_fields_to_edit( $form_fields = array(), $post = 0 ) {
+		$form_fields['attachment_id_field'] = array(
+			'label' => 'Attachment ID',
+			'input' => 'html',
+			'html'  => '<input type="text" id="attachment-id-' . absint( $post->ID ) . '" value="' . absint( $post->ID ) . '" disabled> ',
+		);
+		return $form_fields;
 	}
 
 	/**
@@ -203,6 +246,39 @@ class RH_Media {
 			$output[ $name ] = $pretty_name;
 		}
 		return $output;
+	}
+
+	/**
+	 * Search post attachments where the given filename matchs the attached file path
+	 *
+	 * @link https://wordpress.stackexchange.com/a/405142/2744
+	 *
+	 * @param  string $filename The filename to search
+	 *
+	 * @return int The attachment ID of the first result sorted by post_date in reverse chronological order (most recent first)
+	 */
+	public static function get_attachment_id_by_filename( $filename = '' ) {
+		global $wpdb;
+		$like          = '%' . $wpdb->esc_like( $filename );
+		$attachment_id = $wpdb->get_var(
+			$wpdb->prepare(
+				"
+			SELECT
+				post_id
+			FROM
+				`$wpdb->postmeta`
+				LEFT JOIN `$wpdb->posts` ON `$wpdb->postmeta`.post_id = `$wpdb->posts`.ID
+			WHERE
+				`$wpdb->postmeta`.meta_key = '_wp_attached_file'
+				AND `$wpdb->postmeta`.meta_value LIKE '%s'
+			ORDER BY
+				`$wpdb->posts`.post_date DESC
+			LIMIT 1;
+		",
+				$like
+			)
+		);
+		return absint( $attachment_id );
 	}
 
 	/**
@@ -482,8 +558,7 @@ class RH_Media {
 
 		// See list of YouTube player params https://developers.google.com/youtube/player_parameters#Parameters
 		$default_params    = array(
-			'modestbranding' => 1,
-			'rel'            => 0,
+			'rel' => 0,
 		);
 		$context['params'] = wp_parse_args( $context['params'], $default_params );
 		$context['params'] = build_query( $context['params'] );
