@@ -15,7 +15,7 @@ $files_to_require = array(
 	'debugging.php',
 
 	'class-rh-admin.php',
-	'class-rh-cdn.php',
+	// 'class-rh-cdn.php',
 	'class-rh-helpers.php',
 	'class-rh-svg.php',
 	'class-rh-pagination.php',
