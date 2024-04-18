@@ -96,7 +96,7 @@ if ( ! empty( $backtrace ) ) {
 }
 
 if ( ! empty( $args['files'] ) ) {
-	$github_branch = 'main';
+	$github_branch = 'master';
 	if ( wp_get_environment_type() === 'staging' ) {
 		$github_branch = 'staging';
 	}
@@ -106,7 +106,7 @@ if ( ! empty( $args['files'] ) ) {
 		$new_file       = (object) array(
 			'relative_path' => $file_path,
 			'root_path'     => trailingslashit( $theme_path ) . $file_path,
-			'github_url'    => 'https://github.com/kingkool68/wordpress-rh-starter-theme/blob/' . $github_branch . '/' . $file_path,
+			'github_url'    => 'https://github.com/kingkool68/wordpress-russell-heimlich/blob/' . $github_branch . '/' . $file_path,
 			'extension'     => pathinfo( $file_path, PATHINFO_EXTENSION ),
 		);
 		$source_files[] = $new_file;
