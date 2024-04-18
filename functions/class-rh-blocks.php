@@ -3,6 +3,15 @@
  * General Block Settings
  */
 class RH_Blocks {
+
+	/**
+	 * Store location parameters for blocks that want to support global fields
+	 *
+	 * @var array Collection of location parameters
+	 */
+	public static $global_field_locations = array();
+
+
 	/**
 	 * Get an instance of this class
 	 */
@@ -31,6 +40,8 @@ class RH_Blocks {
 
 		// Disable all frontend styles of the Syntax Highlighting Code block
 		add_filter( 'syntax_highlighting_code_block_styling', '__return_false' );
+		add_filter( 'sprig/roots', array( $this, 'filter_sprig_roots' ) );
+		add_filter( 'acf/prepare_field_group_for_import', array( $this, 'filter_acf_prepare_field_group_for_import' ) );
 	}
 
 	/**
@@ -58,6 +69,55 @@ class RH_Blocks {
 			)
 		);
 	}
+
+	/**
+	 * Add every directory in the /blocks/ directory to the possible path for a Twig file
+	 *
+	 * @param  array $paths Places Twig should look for Twig files
+	 * @return array        Modified paths
+	 */
+	public function filter_sprig_roots( $paths = array() ) {
+		$iter = new RecursiveIteratorIterator(
+			new RecursiveDirectoryIterator(
+				get_template_directory() . '/blocks/',
+				RecursiveDirectoryIterator::SKIP_DOTS
+			),
+			RecursiveIteratorIterator::SELF_FIRST,
+			RecursiveIteratorIterator::CATCH_GET_CHILD // Ignore "Permission denied"
+		);
+		foreach ( $iter as $path => $dir ) {
+			if ( $dir->isDir() ) {
+				$paths[] = $path;
+			}
+		}
+		return $paths;
+	}
+
+	/**
+	 * Process ACF field groups looking for field groups that have the 'global_fields' key set
+	 * These field groups will need the global fields added to them which happens dynamically
+	 *
+	 * @param  array $field_group The field_group args being imported into PHP by ACF
+	 */
+	public function filter_acf_prepare_field_group_for_import( $field_group = array() ) {
+		if ( ! empty( $field_group['global_fields'] ) ) {
+			$global_fields = $field_group['global_fields'];
+			if ( ! is_array( $global_fields ) ) {
+				$global_fields = array( $global_fields );
+			}
+			foreach ( $global_fields as $variation_key ) {
+				if ( ! empty( $field_group['location'][0] ) ) {
+					static::$global_field_locations[ $variation_key ][] = $field_group['location'][0];
+				}
+			}
+		}
+		$key = str_replace( '_fields', '', $field_group['key'] );
+		if ( ! empty( static::$global_field_locations[ $key ] ) ) {
+			$field_group['location'] = static::$global_field_locations[ $key ];
+		}
+		return $field_group;
+	}
+
 
 	/**
 	 * Get a list of fields associated with a given ACF block
@@ -89,6 +149,65 @@ class RH_Blocks {
 			}
 		}
 		return array();
+	}
+
+	/**
+	 * Merge default values with argument values and process all values before sending them to a Twig template
+	 *
+	 * @param  array $args     Argument values to change what is rendered
+	 * @param  array $defaults Default values for what should be rendered
+	 */
+	public static function do_context( $args = array(), $defaults = array() ) {
+		$c = wp_parse_args( $args, $defaults );
+		if ( ! empty( $c['attributes'] ) ) {
+			if ( is_string( $c['attributes'] ) ) {
+				$c['attributes'] = array( $c['attributes'] );
+			}
+			$c['attributes'] = CoderPad_Helpers::build_html_attributes( $c['attributes'] );
+		} else {
+			$c['attributes'] = '';
+		}
+		if ( ! empty( $c['additional_css_classes'] ) ) {
+			$c['additional_css_classes'] = CoderPad_Helpers::css_class( '', $c['additional_css_classes'] );
+		}
+		return $c;
+	}
+
+	/**
+	 * Get attributes when an ACF block is rendered. Handles processing global field values in one place.
+	 *
+	 * @param  array $block The ACF block settings being rendered by a template
+	 */
+	public static function get_attributes_from_block( $block = array() ) {
+		$output = array(
+			'css_class'  => '',
+			'attributes' => '',
+		);
+		if ( ! empty( $block['className'] ) ) {
+			$output['css_class'] = $block['className'];
+		}
+
+		$attrs       = array();
+		$linline_css = array();
+
+		if ( ! empty( $block['anchor'] ) ) {
+			$attrs['id'] = sanitize_title( $block['anchor'] );
+		}
+
+		if ( ! empty( $block['name'] ) ) {
+			$attrs['data-block-name'] = str_replace( 'acf/', '', $block['name'] );
+		}
+
+		if ( ! empty( $linline_css ) ) {
+			$attrs['style'] = '';
+			foreach ( $linline_css as $property => $value ) {
+				$property        = esc_html( $property );
+				$value           = esc_html( $value );
+				$attrs['style'] .= "{$property}:{$value};";
+			}
+		}
+		$output['attributes'] = $attrs;
+		return (object) $output;
 	}
 }
 RH_Blocks::get_instance();

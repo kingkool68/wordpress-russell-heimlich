@@ -35,14 +35,6 @@ class RH_Text_Image_Block {
 			$ver   = null,
 			$media = 'all'
 		);
-
-		wp_register_script(
-			'rh-text-image-block',
-			get_template_directory_uri() . '/blocks/text-image-block/rh-text-image.js',
-			$deps      = array(),
-			$ver       = null,
-			$in_footer = true
-		);
 	}
 
 	/**
@@ -59,6 +51,10 @@ class RH_Text_Image_Block {
 			'category'        => 'rh',
 			'icon'            => 'align-left',
 			'keywords'        => array( 'text / image', 'text image' ),
+			'enqueue_assets'  => function () {
+				wp_enqueue_style( 'rh-text-image-block' );
+			},
+
 		);
 		acf_register_block_type( $args );
 
@@ -153,16 +149,18 @@ class RH_Text_Image_Block {
 	 */
 	public static function render( $args = array() ) {
 		$defaults = array(
-			'image'            => '',
-			'image_alignment'  => 'left',
-			'image_proportion' => '',
-			'bg_color'         => '',
-			'kicker'           => '',
-			'headline'         => '',
-			'headline_url'     => '',
-			'description'      => '',
+			'attributes'             => array(),
+			'additional_css_classes' => '',
+			'image'                  => '',
+			'image_alignment'        => 'left',
+			'image_proportion'       => '',
+			'bg_color'               => '',
+			'kicker'                 => '',
+			'headline'               => '',
+			'headline_url'           => '',
+			'description'            => '',
 		);
-		$context  = wp_parse_args( $args, $defaults );
+		$context  = RH_Blocks::do_context( $args, $defaults );
 
 		if ( $context['image_alignment'] !== 'right' ) {
 			$context['image_alignment'] = $defaults['image_alignment'];
@@ -173,7 +171,6 @@ class RH_Text_Image_Block {
 		$context['description'] = apply_filters( 'the_content', $context['description'] );
 
 		wp_enqueue_style( 'rh-text-image-block' );
-		wp_enqueue_script( 'rh-text-image-block' );
 		return Sprig::render( 'text-image-block.twig', $context );
 	}
 
@@ -186,6 +183,7 @@ class RH_Text_Image_Block {
 	 * @param   (int|string) $post_id The post ID this block is saved to.
 	 */
 	public function render_from_block( $block = array(), $content = '', $is_preview = false, $post_id = 0 ) {
+		$additional = RH_Blocks::get_attributes_from_block( $block );
 		$image_id   = get_field( 'text_image_block_image_id' );
 		$image_args = array();
 
@@ -203,15 +201,17 @@ class RH_Text_Image_Block {
 		}
 
 		$args = array(
-			'image'            => RH_Media::render_image_from_post( $image_id, $image_args ),
-			'image_alignment'  => get_field( 'text_image_block_image_alignment' ),
-			'image_proportion' => get_field( 'text_image_block_image_proportion' ),
-			'image_size'       => get_field( 'text_image_block_image_size' ),
-			'bg_color'         => get_field( 'text_image_block_bg' ),
-			'kicker'           => get_field( 'text_image_block_kicker' ),
-			'headline'         => get_field( 'text_image_block_headline' ),
-			'headline_url'     => $headline_url,
-			'description'      => get_field( 'text_image_block_description' ),
+			'attributes'             => $additional->attributes,
+			'additional_css_classes' => $additional->css_class,
+			'image'                  => RH_Media::render_image_from_post( $image_id, $image_args ),
+			'image_alignment'        => get_field( 'text_image_block_image_alignment' ),
+			'image_proportion'       => get_field( 'text_image_block_image_proportion' ),
+			'image_size'             => get_field( 'text_image_block_image_size' ),
+			'bg_color'               => get_field( 'text_image_block_bg' ),
+			'kicker'                 => get_field( 'text_image_block_kicker' ),
+			'headline'               => get_field( 'text_image_block_headline' ),
+			'headline_url'           => $headline_url,
+			'description'            => get_field( 'text_image_block_description' ),
 		);
 
 		if ( empty( $args['headline'] ) && $is_preview ) {
@@ -220,6 +220,5 @@ class RH_Text_Image_Block {
 		}
 		echo static::render( $args );
 	}
-
 }
 RH_Text_Image_Block::get_instance();

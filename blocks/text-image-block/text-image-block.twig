@@ -1,5 +1,5 @@
-<div class="
-    text-image-block
+<section class="
+	text-image-block
     text-image-block--align-{{ image_alignment|sanitize_html_class }}
     {% if not image %}
         text-image-block--no-image
@@ -7,7 +7,9 @@
     {% if bg_color %}
         text-image-block--bg-{{ bg_color|sanitize_html_class }}
     {% endif %}
-">
+	{{ additional_css_classes }}
+" {{ attributes }}>
+
 
 	<div class="inner">
 		<div class="
@@ -41,4 +43,4 @@
 
 		</div>
 	</div>
-</div>
+</section>
