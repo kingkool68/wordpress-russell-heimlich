@@ -1,0 +1,15 @@
+@import 'base/_imports.scss';
+
+.timeline-list-block {
+
+    .the-title {
+        @include h2();
+    }
+
+    .the-cta {
+        @include icon_link();
+
+        display: inline-flex;
+        align-items: center;
+    }
+}

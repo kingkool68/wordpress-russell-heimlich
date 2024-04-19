@@ -1,0 +1,34 @@
+<section class="
+	timeline-list-block
+	{{ additional_css_classes }}
+" {{ attributes }}>
+	{% if the_title %}
+		<h2 class="the-title">{{ the_title }}</h2>
+	{% endif %}
+
+	{% if the_list %}
+		<ol>
+			{% for item in the_list %}
+				<li>
+					{% if item.label_url %}
+						<a href="{{ item.label_url|esc_url }}">
+							{{ item.label }}
+						</a>
+					{% else %}
+						{{ item.label }}
+					{% endif %}
+					{{ item.dates }}
+				</li>
+			{% endfor %}
+		<ol>
+	{% endif %}
+
+	{% if the_cta %}
+		<p>
+			<a href="{{ the_cta_url }}" class="the-cta">
+				{{ the_cta }}
+				{{ the_cta_icon }}
+			</a>
+		</p>
+	{% endif %}
+</section>
