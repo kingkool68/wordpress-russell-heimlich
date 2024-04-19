@@ -91,3 +91,35 @@
     }
   }
 }
+
+@mixin icon_link($child_selector: '.icon') {
+  #{$child_selector} {
+    transform: translateX(em(12px, 20px));
+    transition: transform 320ms;
+  }
+
+  &:hover,
+  &focus-visible {
+    text-decoration: none;
+
+    #{$child_selector} {
+      transform: translateX(em(20px, 20px));
+    }
+  }
+}
+
+@mixin reverse_icon_link($child_selector: '.icon') {
+  #{$child_selector} {
+    transform: translateX(em(-12px, 20px));
+    transition: transform 320ms;
+  }
+
+  &:hover,
+  &focus-visible {
+    text-decoration: none;
+
+    #{$child_selector} {
+      transform: translateX(em(-20px, 20px));
+    }
+  }
+}
