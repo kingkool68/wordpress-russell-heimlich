@@ -77,6 +77,12 @@ class RH_Timeline_List_Block {
 					'button_label' => 'Add Item',
 					'sub_fields'   => array(
 						array(
+							'key'   => 'field_timeline_list_item_role',
+							'name'  => 'timeline_list_item_role',
+							'label' => 'Role',
+							'type'  => 'text',
+						),
+						array(
 							'key'   => 'field_timeline_list_item_label',
 							'name'  => 'timeline_list_item_label',
 							'label' => 'Label',
@@ -161,11 +167,13 @@ class RH_Timeline_List_Block {
 		$the_list = array();
 		while ( have_rows( 'timeline_list_items' ) ) :
 			the_row();
-			$the_list[] = array(
+			$list_item_args = array(
+				'role'      => get_sub_field( 'timeline_list_item_role' ),
 				'label'     => get_sub_field( 'timeline_list_item_label' ),
 				'label_url' => get_sub_field( 'timeline_list_item_label_url' ),
 				'dates'     => get_sub_field( 'timeline_list_item_dates' ),
 			);
+			$the_list[]     = static::render_list_item( $list_item_args );
 		endwhile;
 
 		$args = array(
@@ -177,6 +185,25 @@ class RH_Timeline_List_Block {
 			'the_cta_url'            => get_field( 'timeline_list_cta_url' ),
 		);
 		echo static::render( $args );
+	}
+
+	/**
+	 * Render an individual list item
+	 *
+	 * @param  array $args Arguments to modify what is rendered
+	 */
+	public static function render_list_item( $args = array() ) {
+		$defaults = array(
+			'role'      => '',
+			'label'     => '',
+			'label_url' => '',
+			'dates'     => '',
+		);
+		$context  = wp_parse_args( $args, $defaults );
+
+		// use en-dash for range values. See https://en.wikipedia.org/wiki/Dash#Ranges_of_values
+		$context['dates'] = str_replace( '-', '&ndash;', $context['dates'] );
+		return Sprig::render( 'timeline-list-item.twig', $context );
 	}
 }
 RH_Timeline_List_Block::get_instance();

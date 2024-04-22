@@ -7,20 +7,11 @@
 	{% endif %}
 
 	{% if the_list %}
-		<ol>
+		<ol class="the-list">
 			{% for item in the_list %}
-				<li>
-					{% if item.label_url %}
-						<a href="{{ item.label_url|esc_url }}">
-							{{ item.label }}
-						</a>
-					{% else %}
-						{{ item.label }}
-					{% endif %}
-					{{ item.dates }}
-				</li>
+				<li> {{ item }} </li>
 			{% endfor %}
-		<ol>
+		</ol>
 	{% endif %}
 
 	{% if the_cta %}
