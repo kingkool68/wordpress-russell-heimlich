@@ -108,6 +108,7 @@ add_filter( 'sprig/twig/filters', 'filter_sprig_twig_filters' );
  */
 function filter_sprig_twig_functions( $functions = array() ) {
 	$functions['get_language_attributes'] = 'get_language_attributes';
+	$functions['get_template_directory_uri'] = 'get_template_directory_uri';
 	return $functions;
 }
 add_filter( 'sprig/twig/functions', 'filter_sprig_twig_functions' );

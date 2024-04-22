@@ -1,13 +1,52 @@
+.bg-container {
+    background-image: url(../img/repeating-dev-pattern.png);
+    background-repeat: repeat;
+    background-position: 0 rem(-256px);
+    background-size: 20%;
+    height: rem(420px);
+    position: relative;
+    border-bottom: rem(3px) solid $light-water-wash;
+
+    .overlay-mask {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: rgba($blue-lobster, 0.2);
+    }
+}
+
+.main-content {
+    margin: rem(-196px) rem(64px) 0;
+    background-color: $white;
+    border-radius: rem(15px);
+    box-shadow: 0 12px 25px -5px rgba(0, 0, 0, .1),
+        0 6px 10px -5px rgba(0, 0, 0, .04);
+    padding: rem(64px);
+    position: relative;
+
+    .circle-photo-holder {
+        margin: 0 auto;
+        position: relative;
+        max-width: rem(180px);
+    }
+
+    .circle-photo {
+        position: absolute;
+        border: rem(3px) solid $white;
+        border-radius: 50%;
+        left: calc(50% - 90px);
+        top: rem(-160px);
+        box-shadow: 0 12px 25px -5px rgba(0, 0, 0, .1),
+            0 6px 10px -5px rgba(0, 0, 0, .04)
+    }
+}
+
 .the-page {
     max-width: rem(1024px);
     margin: 0 auto;
     padding: rem(32px) rem(16px) 0;
-
-    // Prevent horizontal scroll bar when busting elements outside of their container
-    // i.e. margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);
-    .main-content {
-        overflow-x: hidden;
-    }
 
     .the-title {
         @include h1();
