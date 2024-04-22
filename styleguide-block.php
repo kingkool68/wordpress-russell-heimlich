@@ -131,7 +131,6 @@ $context = array(
 	'the_description'        => apply_filters( 'the_content', $args['the_description'] ),
 	'examples'               => $args['examples'],
 	'posts_containing_block' => $posts_containing_block,
-	'is_user_logged_in'      => is_user_logged_in(),
 	'wp_login_url'           => wp_login_url( $redirect = RH_Helpers::get_current_url() ),
 	'source_files'           => $source_files,
 	'before_content'         => $args['before_content'],

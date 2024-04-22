@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    {{ before_content }}
+	{{ before_content }}
 	<style>
 		.styleguide-example {
 			margin: 3rem 0;
@@ -39,14 +39,14 @@
 
 		{% if posts_containing_block %}
 			<section class="posts-containing-block">
-                <h2>Where is this block used?</h2>
+				<h2>Where is this block used?</h2>
 				<p>This block is used on {{ posts_containing_block|length|absint }}
-                    {% if posts_containing_block|length == 1 %}
-                        URL
-                    {% else %}
-                        different URLs
-                    {% endif %}
-                </p>
+					{% if posts_containing_block|length == 1 %}
+						URL
+					{% else %}
+						different URLs
+					{% endif %}
+				</p>
 
 				<div class="wp-block-table">
 					<table>
@@ -71,22 +71,18 @@
 			</section>
 		{% endif %}
 
-        {% if source_files %}
-            <section class="source-files">
-                <h2>Source Files</h2>
-				{% if is_user_logged_in %}
-					{% for item in source_files %}
-						<p>
-							<a href="{{ item.github_url|esc_url }}">
-								<code>{{ item.relative_path }}</code>
-							</a>
-						<p>
-					{% endfor %}
-				{% else %}
-					<p><a href="{{ wp_login_url|esc_url }}">Login to WordPress to see source file details.</a></p>
-				{% endif %}
-            </section>
-        {% endif %}
+		{% if source_files %}
+			<section class="source-files">
+				<h2>Source Files</h2>
+				{% for item in source_files %}
+					<p>
+						<a href="{{ item.github_url|esc_url }}">
+							<code>{{ item.relative_path }}</code>
+						</a>
+					<p>
+				{% endfor %}
+			</section>
+		{% endif %}
 	</article>
 
 {% endblock %}
