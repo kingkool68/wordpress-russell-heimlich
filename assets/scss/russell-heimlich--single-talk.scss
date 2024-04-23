@@ -1,0 +1,17 @@
+@import 'base/_imports.scss';
+
+.single-talk {
+    .single-title {
+        @include h1();
+    }
+
+    .the-meta-data {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .the-content {
+        max-width: 60ch;
+        margin: 0 auto;
+    }
+}

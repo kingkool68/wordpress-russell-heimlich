@@ -1,34 +1,39 @@
 {% extends 'base.twig' %}
 
 {% block content %}
-	<article>
+	<article class="single-talk">
 		<header class="the-header">
 			<h1 class="single-title">{{ the_title }}</h1>
-			{% if display_date %}
-				<p>
-					Presented on <time class="date" datetime="{{ machine_date|esc_attr }}">{{ display_date }}</time> at
-					{% if event_url %}
-						<a href="{{ event_url|esc_url }}">{{ event_name}}</a>
-					{% else %}
-						{{ event_name }}
-					{% endif %}
-				</p>
-			{% endif %}
 		</header>
 
-		{% if event_name %}
-			<p class="event-name">
+		{% if the_video_embed %}
+			<div class="the-video-embed">
+				{{ the_video_embed }}
+			</div>
+		{% endif %}
 
-			</p>
+		{% if the_display_date or the_event_name or the_slides_url %}
+			<div class="the-meta-data">
+				{% if the_display_date %}
+					<p>
+						Presented on <time class="date" datetime="{{ the_machine_date|esc_attr }}">{{ the_display_date }}</time> at
+						{% if the_event_url %}
+							<a href="{{ the_event_url|esc_url }}">{{ the_event_name}}</a>
+						{% else %}
+							{{ the_event_name }}
+						{% endif %}
+					</p>
+				{% endif %}
+
+				{% if the_slides_url %}
+					<p>
+						<a href="{{ the_slides_url|esc_url }}">View Slides</a>
+					</p>
+				{% endif %}
+			</div>
 		{% endif %}
 
 		<div class="the-content wysiwyg">
-			{{ video_embed }}
-
-			{% if slides_url %}
-				<p><a href="{{ slides_url|esc_url }}">View Slides</a></p>
-			{% endif %}
-
 			{{ the_content }}
 		</div>
 
