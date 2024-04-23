@@ -107,7 +107,7 @@ add_filter( 'sprig/twig/filters', 'filter_sprig_twig_filters' );
  * @param  array $functions The Twig functions to modify
  */
 function filter_sprig_twig_functions( $functions = array() ) {
-	$functions['get_language_attributes'] = 'get_language_attributes';
+	$functions['get_language_attributes']    = 'get_language_attributes';
 	$functions['get_template_directory_uri'] = 'get_template_directory_uri';
 	return $functions;
 }
