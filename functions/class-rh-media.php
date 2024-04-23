@@ -135,7 +135,7 @@ class RH_Media {
 	 * @param string $url    The URL of the content to be embedded
 	 */
 	public function filter_oembed_dataparse_lite_youtube_embed( $return = '', $data = array(), $url = '' ) {
-		if ( 'video' !== $data->type || 'YouTube' !== $data->provider_name ) {
+		if ( 'video' !== $data->type || empty( $data->provider_name ) || 'YouTube' !== $data->provider_name ) {
 			return $return;
 		}
 
