@@ -60,7 +60,7 @@ class RH_Text_Image_Block {
 
 		$args = array(
 			'key'      => 'text_image_block_fields',
-			'title'    => 'Call to Action Block Fields',
+			'title'    => 'Text / Image Block Fields',
 			'fields'   => array(
 				array(
 					'key'           => 'field_text_image_block_image_id',
@@ -175,7 +175,7 @@ class RH_Text_Image_Block {
 	}
 
 	/**
-	 * Call to Action block callback function
+	 * Block callback function
 	 *
 	 * @param   array        $block The block settings and attributes.
 	 * @param   string       $content The block inner HTML (empty).
