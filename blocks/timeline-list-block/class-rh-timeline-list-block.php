@@ -129,7 +129,7 @@ class RH_Timeline_List_Block {
 	}
 
 	/**
-	 * Render a Text Image component
+	 * Render component
 	 *
 	 * @param array $args Arguments to modify what is rendered
 	 */
