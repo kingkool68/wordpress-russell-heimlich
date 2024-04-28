@@ -2,17 +2,19 @@
  * 18px perfect fourth scale. See https://typescale.com/
  */
 
-@mixin h1($fontWeight: 900) {
+@mixin h1($fontWeight: 700) {
     font-family: $headline-font;
-    font-size: rem(100px);
+    font-size: rem(76px);
+    font-size: fluid(56px, 76px);
     line-height: 1.15;
     font-weight: $fontWeight;
     color: $gray-90;
 }
 
-@mixin h2($fontWeight: 900) {
+@mixin h2($fontWeight: 700) {
     font-family: $headline-font;
-    font-size: rem(76px);
+    font-size: rem(56px);
+    font-size: fluid(42px, 56px);
     line-height: 1.15;
     font-weight: $fontWeight;
     color: $gray-90;
@@ -20,7 +22,8 @@
 
 @mixin h3($fontWeight: 700) {
     font-family: $headline-font;
-    font-size: rem(56px);
+    font-size: rem(42px);
+    font-size: fluid(32px, 42px);
     line-height: 1.15;
     font-weight: $fontWeight;
     color: $gray-90;
@@ -28,7 +31,8 @@
 
 @mixin h4($fontWeight: 700) {
     font-family: $headline-font;
-    font-size: rem(42px);
+    font-size: rem(32px);
+    font-size: fluid(24px, 32px);
     line-height: 1.15;
     font-weight: $fontWeight;
     color: $gray-90;
@@ -36,13 +40,13 @@
 
 @mixin h5($fontWeight: 700) {
     font-family: $headline-font;
-    font-size: rem(32px);
+    font-size: rem(24px);
     line-height: 1.15;
     font-weight: $fontWeight;
     color: $gray-90;
 }
 
-@mixin h6($fontWeight: 700) {
+@mixin h6($fontWeight: 400) {
     font-family: $headline-font;
     font-size: rem(24px);
     line-height: 1.15;
