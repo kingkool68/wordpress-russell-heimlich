@@ -163,20 +163,7 @@ class RH_Talk_Teaser_Block {
 	 * @param  array    $args Arguments to modify what is rendered
 	 */
 	public static function render_from_wp_query( $the_query = false, $args = array() ) {
-		global $wp_query;
-		if ( ! $the_query ) {
-			$the_query = $wp_query;
-		}
-		if ( ! $the_query instanceof WP_Query ) {
-			throw new Exception( '$the_query is not a WP_Query object!' );
-		}
-		$output = array();
-		if ( ! empty( $the_query->posts ) ) {
-			foreach ( $the_query->posts as $the_post ) {
-				$output[] = static::render_from_post( $the_post, $args );
-			}
-		}
-		return $output;
+		return RH_Helpers::render_from_wp_query( $the_query, $args, array( static::class, 'render_from_post' ) );
 	}
 }
 RH_Talk_Teaser_Block::get_instance();
