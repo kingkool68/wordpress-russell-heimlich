@@ -20,7 +20,9 @@
 
 	<section class="talks-section">
 		<h2 class="archive-section-title">Invited Talks &amp; Speaking Engagements</h1>
-		{{ talks }}
+		{% for item in talks %}
+			{{ item }}
+		{% endfor %}
 	</section>
 
 {% endblock %}

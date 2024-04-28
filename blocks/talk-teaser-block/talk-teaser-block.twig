@@ -1,0 +1,39 @@
+<section class="
+	talk-teaser-block
+	{{ additional_css_classes }}
+" {{ attributes }}>
+	<div class="inner">
+		<a href="{{ the_url|esc_url }}">
+			{{ the_image }}
+		</a>
+
+		<div class="content">
+
+			{% if the_display_date or the_event_name %}
+				<p class="the-meta">
+					Presented
+					{% if the_date %}
+						on <time datetime="{{ the_machine_date|esc_attr }}">{{ the_display_date }}</time>,
+					{% endif %}
+					{% if the_event_name %}
+						at {{ the_event_name }}
+					{% endif %}
+				</p>
+			{% endif %}
+
+			{% if the_title %}
+				<h2 class="the-title">
+					<a href="{{ the_url|esc_url }}">
+						{{ the_title }}
+					</a>
+				</h2>
+			{% endif %}
+
+			{% if the_excerpt %}
+				<div class="the-excerpt">
+					{{ the_excerpt }}
+				</div>
+			{% endif %}
+		</div>
+	</div>
+</section>
