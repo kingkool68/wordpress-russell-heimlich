@@ -29,6 +29,10 @@
 		font-size: 20px;
 	}
 
+	.wysiwyg .italic {
+		font-style: italic;
+	}
+
 	.wysiwyg .font-weight--900 {
 		font-weight: 900;
 	}
@@ -77,7 +81,14 @@
 						<dd class="js-line-height-value"></dd>
 					</dl>
 					<samp class="js-font-size-target sample">
-						<{{ item.tag }} {% if item.weight %}class="font-weight--{{ item.weight|sanitize_html_class }}" {% endif %} contenteditable="true">
+						<{{ item.tag }} class="
+							{% if item.weight %}
+								font-weight--{{ item.weight|sanitize_html_class }}
+							{% endif %}
+							{% if item.italic %}
+								italic
+							{% endif %}
+						" contenteditable="true">
 							{{ sample_text }}
 						</{{item.tag}}>
 					</samp>
