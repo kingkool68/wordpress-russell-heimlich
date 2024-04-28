@@ -33,7 +33,7 @@ import config from './gulp-config.js';
 import gulp from 'gulp'; // Gulp of-course
 
 // CSS related plugins.
-import dartSass from 'sass'; // Gulp pluign for Sass compilation.
+import * as dartSass from 'sass'; // Gulp pluign for Sass compilation.
 import gulpSass from 'gulp-sass';
 var sass = gulpSass(dartSass);
 import minifycss from 'gulp-uglifycss' // Minifies CSS files.
