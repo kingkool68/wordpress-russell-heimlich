@@ -2,38 +2,44 @@
 .wysiwyg {
     h1 {
         @include h1;
+
         margin-bottom: rem(22px);
     }
 
     h2 {
         @include h2;
+
         margin-bottom: rem(23px);
     }
 
     h3 {
         @include h3;
+
         margin-bottom: rem(24px);
     }
 
     h4 {
         @include h4;
+
         margin-bottom: rem(27px);
     }
 
     h5 {
         @include h5;
+
         margin-bottom: rem(27px);
     }
 
     h6 {
         @include h6;
+
         margin-bottom: rem(30px);
     }
 
     p {
-        font-size: rem(16px);
+        font-size: rem(18px);
         line-height: 1.6;
-        margin-bottom: rem(16px);
+        margin-bottom: rem(18px);
     }
 
     abbr {
