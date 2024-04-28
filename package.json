@@ -15,7 +15,8 @@
   },
   "dependencies": {
     "@wordpress/dom-ready": "^3.22.0",
-    "element-closest": "^3.0.2"
+    "element-closest": "^3.0.2",
+    "gulp-replace": "^1.1.4"
   },
   "devDependencies": {
     "@babel/core": "^7.22.15",
