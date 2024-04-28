@@ -1,5 +1,6 @@
 // For styling text content that was composed in the WYSIWYG editor where we can style elements directly
-.wysiwyg {
+.wysiwyg,
+.editor-styles-wrapper {
     h1 {
         @include h1;
 

@@ -1,0 +1,12 @@
+@import 'base/_imports.scss';
+
+@import 'components/_visibility.scss';
+
+@import 'components/_general.scss';
+@import 'components/_wysiwyg.scss';
+@import 'components/_media.scss';
+@import 'components/_svg.scss';
+
+body {
+    background-color: $white;
+}

@@ -22,6 +22,7 @@ class RH_Scripts_And_Styles {
 	 */
 	public function setup_actions() {
 		add_action( 'init', array( $this, 'action_init' ) );
+		add_action( 'admin_init', array( $this, 'action_admin_init' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'action_wp_enqueue_scripts' ) );
 		add_action( 'enqueue_block_editor_assets', array( $this, 'action_enqueue_block_editor_assets' ) );
 		add_action( 'wp_default_scripts', array( $this, 'action_wp_default_scripts' ) );
@@ -100,6 +101,15 @@ class RH_Scripts_And_Styles {
 			);
 		}
 	}
+
+	/**
+	 * Add support for editor styles within the block editor
+	 */
+	public function action_admin_init() {
+		add_theme_support( 'editor-styles' );
+		add_editor_style( 'assets/css/russell-heimlich--editor-styles.min.css' );
+	}
+
 
 	/**
 	 * Enqueue the main stylesheet at the right time
