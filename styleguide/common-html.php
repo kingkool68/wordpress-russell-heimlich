@@ -1,96 +1,29 @@
-<?php get_header(); ?>
-<p>Lorem ipsum dolor sit amet, id nam prima pertinax sadipscing, vix ea dicunt intellegebat. Et pri hinc labore apeirian, veritus postulant eum et, in quas epicurei sea. Mea tale detraxit senserit at. Salutatus dissentias at est, alii ullum reprimique mel cu. Ne vis corpora appellantur, partem alterum concludaturque ea mei. Posse ludus omnesque sit ea.</p>
-<h1>Heading 1</h1>
-<h1>Heading 1 <small>with some small text</small></h1>
-<h2>Heading 2</h2>
-<h3>Heading 3</h3>
-<h4>Heading 4</h4>
-<h5>Heading 5</h5>
-<h6>Heading 6</h6>
-<p>Text level <abbr title="HyperText Markup Language">HTML</abbr> elements may be used within other elements. They include: <em>em</em> and <strong>strong</strong> for semantic emphasis, <i>i</i> and <b>b</b> for presentational formatting, <abbr title="Abbreviation">abbr</abbr> abbreviations, <acronym title="National Basketball Association">NBA</acronym> acronym, <cite>cite</cite> citations, <code>code</code> example, <del>del</del>, <ins>ins</ins> for visibly deleted and inserted content, <dfn>dfn</dfn> definitions, <mark>mark</mark> for highlighted passages and <sup>sup</sup> superscript and <sub>sub</sub> subscript. Since this is the web, we often <a href="#">like to link out</a> to other resources.</p>
-<p>Pre Formatted Text:</p>
-<pre><p>
-Lorem ipsum dolor sit amet,
-consectetuer adipiscing elit.
-Nullam dignissim convallis est.
-Quisque aliquam. Donec faucibus.
-Nunc iaculis suscipit dui.
-Nam sit amet sem.
-Aliquam libero nisi, imperdiet at,
-tincidunt nec, gravida vehicula,
-nisl.
-Praesent mattis, massa quis
-luctus fermentum, turpis mi
-volutpat justo, eu volutpat
-enim diam eget metus.
-Maecenas ornare tortor.
-Donec sed tellus eget sapien
-fringilla nonummy.
-Mauris a ante. Suspendisse
-quam sem, consequat at,
-commodo vitae, feugiat in,
-nunc. Morbi imperdiet augue
-quis tellus.
-</p></pre>
-<h3>Definition List</h3>
-<dl>
-	<dt>Definition List Title</dt>
-	<dd>This is a definition list division.</dd>
-	<dt>Definition List Title</dt>
-	<dd>
-		<p>This is a definition list division.</p>
-		<p>This is a definition list division.</p>
-	</dd>
-</dl>
-
-<h3>Unordered List</h3>
-<ul>
-	<li>List Item 1</li>
-	<li>List Item 2</li>
-	<li>List Item 3</li>
-</ul>
-<ul>
-	<li>List Item 1
-		<ol>
-			<li>Nested Ordered Item 1</li>
-			<li>Nested Ordered Item 2</li>
-			<li>Nested Ordered Item 3</li>
-		</ol>
-	</li>
-	<li>List Item 2
-		<ul>
-			<li>Nested Item 1</li>
-			<li>Nested Item 2</li>
-			<li>Nested Item 3</li>
-		</ul>
-	</li>
-	<li>List Item 3</li>
-</ul>
-<h3>Ordered List</h3>
-<ol>
-	<li>List Item 1</li>
-	<li>List Item 2</li>
-	<li>List Item 3</li>
-</ol>
-<ol>
-	<li>List Item 1
-		<ol>
-			<li>Nested Item 1</li>
-			<li>Nested Item 2</li>
-			<li>Nested Item 3</li>
-		</ol>
-	</li>
-	<li>List Item 2
-		<ul>
-			<li>Nested Item 1</li>
-			<li>Nested Item 2</li>
-			<li>Nested Item 3</li>
-		</ul>
-	</li>
-	<li>List Item 3</li>
-</ol>
-
-<h3>Blockquote</h3>
-<blockquote><p>If I could reach out and be like hey, ‘I wanna do this here, walk me through these first steps, I’ll try to be as compliant as I can,’ but it’s like you don’t necessarily want to say something sometimes. You feel like you’re telling on yourself. ‘Can I trust you to actually legitimately help me?’</p></blockquote>
-
-<?php get_footer();
+<?php
+$individual_html_elements = array(
+	'a'      => '<a href="#">A link to another page</a>',
+	'p'      => '<p>A paragraph of text.</p>',
+	'strong' => '<strong>Indicates that its contents have strong importance, seriousness, or urgency</strong>',
+	'b'      => '<b>Decorative bold style with no semantic meaning</b>',
+	'em'     => '<em>Text that has stress emphasis</em>',
+	'i'      => '<i>Decorative italic style with no semantic meaning</i>',
+	's'      => '<s>To represent things that are no longer relevant or no longer accurate</s>',
+	'del'    => '<del>Represents a range of text that has been deleted from a document</del>',
+	'ins'    => '<ins>Represents a range of text that has been added to a document</ins>',
+	'u'      => '<u>Represents a span of inline text which should be rendered in a way that indicates that it has a non-textual annotation (usually underline)</u>',
+	'abbr'   => '<abbr title="The optional title attribute can provide an expansion or description for the abbreviation">Represents an abbreviation or acronym</abbr>',
+	'bdo'    => '<bdo dir="rtl">Overrides the current directionality of text, so that the text within is rendered in a different direction</bdo>',
+	'cite'   => '<cite>is used to describe a reference to a cited creative work, and must include the title of that work</cite>',
+	'code'   => '<code>Displays its contents styled in a fashion intended to indicate that the text is a short fragment of computer code</code>',
+	'dfn'    => '<dfn>Used to indicate the term being defined within the context of a definition phrase or sentence</dfn>',
+	'kbd'    => '<kbd>Represents a span of inline text denoting textual user input from a keyboard, voice input, or any other text entry device</kbd>',
+	'mark'   => '<mark>Marked or highlighted text for reference or notation purposes</mark>',
+	'q'      => '<q>Indicates that the enclosed text is a short inline quotation</q>',
+	'small'  => '<small>Represents side-comments and small print, like copyright and legal text, independent of its styled presentation</small>',
+	'sub'    => '<sub>Specifies inline text which should be displayed as subscript for solely typographical reasons</sub>',
+	'sup'    => '<sup>Specifies inline text which is to be displayed as superscript for solely typographical reasons</sup>',
+	'var'    => '<var>Represents the name of a variable in a mathematical expression or a programming context</var>',
+);
+$context                  = array(
+	'individual_html_elements' => $individual_html_elements,
+);
+Sprig::out( 'styleguide-common-html.twig', $context );
