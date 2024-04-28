@@ -2,7 +2,7 @@
     background-image: url(../img/repeating-dev-pattern.png);
     background-repeat: repeat;
     background-position: 0 rem(-256px);
-    background-size: 20%;
+    background-size: rem(380px);
     height: rem(420px);
     position: relative;
     border-bottom: rem(3px) solid $light-water-wash;
@@ -24,10 +24,16 @@
     box-shadow: 0 12px 25px -5px rgba(0, 0, 0, .1),
         0 6px 10px -5px rgba(0, 0, 0, .04);
     padding: rem(64px);
+    padding: fluid(32px, 64px);
     position: relative;
 
+    @media( max-width: em(1000px) ) {
+        margin-left: rem(16px);
+        margin-right: rem(16px);
+    }
+
     .circle-photo-holder {
-        margin: 0 auto;
+        margin: 0 auto rem(48px);
         position: relative;
         max-width: rem(180px);
     }
