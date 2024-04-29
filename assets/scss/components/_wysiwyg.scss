@@ -144,6 +144,14 @@
             list-style-type: none;
             margin-left: 0;
         }
+
+        &.horizontal {
+
+            li {
+                display: inline-block;
+                margin-left: rem(30px);
+            }
+        }
     }
 
     ol {
