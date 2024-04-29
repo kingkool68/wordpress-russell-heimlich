@@ -15,11 +15,10 @@
 
     .the-location {
         display: block;
+        font-size: rem(14px);
+        text-transform: uppercase;
     }
 
-    .separator {
-        display: none;
-    }
     .the-duration {
         font-size: rem(14px);
         text-transform: uppercase;
