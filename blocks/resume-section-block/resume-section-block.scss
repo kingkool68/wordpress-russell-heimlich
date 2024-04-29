@@ -1,0 +1,28 @@
+@import 'base/_imports.scss';
+
+.resume-section-block {
+    margin-bottom: fluid(32px, 64px);
+
+    .the-title {
+        @include h3();
+    }
+
+    .the-meta-details {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+
+    .the-location {
+        display: block;
+    }
+
+    .separator {
+        display: none;
+    }
+    .the-duration {
+        font-size: rem(14px);
+        text-transform: uppercase;
+        display: block;
+    }
+}
