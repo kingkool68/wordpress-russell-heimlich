@@ -1,0 +1,7 @@
+{% if link_url %}
+	<a href="{{ link_url|esc_url }}" {{ link_attr }}>
+		{{ image }}
+	</a>
+{% else %}
+	{{ image }}
+{% endif %}

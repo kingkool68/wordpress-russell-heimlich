@@ -1,0 +1,13 @@
+<div class="sidebar-site-nav">
+	<p>Heim<br>lich</p>
+	<nav class="site-nav">
+		<a href="{{ site_url|esc_url }}/blog/" title="Thoughts and Random Musings">Blog</a>
+		<a href="{{ site_url|esc_url }}/projects/" title="Side Projects">Projects</a>
+		<a href="{{ site_url|esc_url }}/speaking/" title="Invited Talks and Speaking Engagements">Speaking</a>
+	</nav>
+	<form action="{{ site_url|esc_url }}" class="site-search">
+		<label for="site-search-input" class="screen-reader-text">Search the entire site</label>
+		<input type="search" id="site-search-input" class="input" name="s" placeholder="Search" value="{{ search_query|esc_attr }}">
+		<input type="submit" value="Search" class="button screen-reader-text">
+	</form>
+</div>

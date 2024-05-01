@@ -1,0 +1,139 @@
+.comments {
+	padding-top: em(32px);
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	justify-content: space-between;
+
+	.comment-count-title {
+		font-size: em(28px);
+		margin: em(8px, 28px) 0;
+		padding-left: em(32px, 28px);
+
+		flex: 1 100%;
+	}
+
+	.comment-form-wrapper {
+		flex: 1 40%;
+		position: sticky;
+		top: 0;
+		padding: 0 em(32px);
+
+		.admin-bar & {
+			top: em(32px);
+		}
+	}
+
+	.comments-list {
+		flex: 1 60%;
+	}
+
+	.comment-meta {
+		padding: 0 0 em(16px);
+	}
+
+	.comment-article {
+		// background-color: #efefef;
+		border-radius: em(8px);
+		padding: em(16px);
+		margin-bottom: em(16px);
+		max-width: em(520px);
+	}
+
+	.bypostauthor .comment-article {
+		background-color: #f8f6de;
+	}
+
+	.comment {
+
+		p {
+			margin-bottom: em(16px);
+			line-height: 1.6;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	.comment-author {
+		font-size: em(18px);
+		display: block;
+		font-weight: 700;
+		margin-bottom: em(8px, 18px);
+	}
+
+	.comment-text {
+		padding-left: em(14px);
+	}
+
+	.children {
+		padding-left: em(48px);
+	}
+}
+
+.comment-notes,
+.comment-form .required {
+	display: none;
+}
+
+.comment-form {
+	display: flex;
+	flex-wrap: wrap;
+
+	label {
+		font-size: em(14px);
+		display: block;
+		padding-bottom: em(4px, 14px);
+		cursor: pointer;
+	}
+
+	input {
+		font-size: em(12px);
+		padding: em(8px, 12px);
+		width: 100%;
+	}
+
+	textarea {
+		font-size: em(16px);
+		padding: em(8px, 16px);
+		width: 100%;
+	}
+
+	.comment-form-comment,
+	.comment-form-author,
+	.comment-form-email,
+	.comment-form-url {
+		padding: em(8px) 0;
+	}
+
+	.comment-form-comment,
+	.comment-form-url {
+		flex: 1 100%;
+	}
+
+	.comment-form-author,
+	.comment-form-email {
+		flex: 1 calc(50% - 4px);
+	}
+
+	.comment-form-author {
+		margin-right: em(4px);
+	}
+
+	.comment-form-email {
+		margin-left: em(4px);
+	}
+
+	.form-submit {
+		margin: 0 auto;
+	}
+
+	.submit {
+		font-size: em(18px);
+		appearance: button;
+		text-align: center;
+		cursor: pointer;
+		padding: em(8px, 18px) em(32px, 18px);
+	}
+}

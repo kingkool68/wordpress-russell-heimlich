@@ -1,0 +1,14 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+	<div class="content wysiwyg">
+		<h1>Inspiration</h1>
+		<ul>
+			{% for url,explanation in items %}
+				<li>
+					<a href="{{ url|esc_url }}" target="_blank">{{ url }}</a>  - {{ explanation }}
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% if dates %}
+    <time class="dates">{{ dates }}</time>
+{% endif %}
+
+<span class="info">
+    {{ role }}{% if label %}, {% endif %}
+    {% if label_url %}
+        <a href="{{ label_url|esc_url }}">
+            {{ label }}
+        </a>
+    {% else %}
+        {{ label }}
+    {% endif %}
+</span>

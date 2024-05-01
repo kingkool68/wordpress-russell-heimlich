@@ -1,0 +1,45 @@
+<section class="
+	resume-section-block
+	{{ additional_css_classes }}
+" {{ attributes }}>
+	{% if the_title %}
+		<h3 class="the-title">{{ the_title }}</h3>
+	{% endif %}
+
+	<div class="the-meta-details">
+		{% if the_company %}
+			<p class="the-company">
+				{% if the_company_url %}
+					<a href="{{ the_company_url|esc_url }}">{{ the_company }}</a>
+				{% else %}
+					{{ the_company }}
+				{% endif  %}
+
+				{% if the_location %}
+					<span class="the-location">{{ the_location }}</span>
+				{% endif %}
+			</p>
+		{% endif %}
+
+		{% if the_start_date and the_end_date %}
+			<p class="the-dates">
+				<time datetime="{{ the_machine_start_date|esc_attr }}">{{ the_start_date }}</time>&ndash;<time datetime="{{ the_machine_end_date|esc_attr }}">{{ the_end_date }}</time>
+				{% if the_duration %}
+					<span class="the-duration">{{ the_duration }}</span>
+				{% endif %}
+			</p>
+		{% endif %}
+	</div>
+
+	{% if the_skills %}
+		<p>Skills</p>
+		<ul class="horizontal">
+			{% for item in the_skills %}
+				<li>{{ item }}</li>
+			{% endfor %}
+		</ul>
+
+	{% endif %}
+
+	{{ the_description }}
+</section>

@@ -1,0 +1,37 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+	<h1>Talk Archive Items</h1>
+
+	{{ basic }}
+
+	{#
+	<div class="archive-item archive-item--talk">
+		<h2 class="talk-title">Scaling WordPress on Amazon Web Services</h2>
+		<time>November 20, 2016</time>
+		<p class="talk-excerpt"></p>
+		<div class="talk-description">
+			<p>Don’t you just hate it when a large traffic spike comes your way and your website goes down? Is your server set-up shakier than an all-night Red Bull + espresso bender at Starbucks? Is your web host holding you back from running your website of your dreams? Then setting up on top of Amazon’s cloud is definitely for you! There is a lot of information about how to set-up a server and running a basic WordPress site on Amazon Web Services. But there isn’t a lot of information on building a highly-available, scalable, enterprise-grade, infrastructure to power WordPress. This talk will cover the nuts and bolts of a highly-scalable cloud hosting set-up specifically for WordPress through my own experience re-architecting BillyPenn.com.</p>
+
+			<p>Topics include:</p>
+			<ul>
+				<li>Is cloud hosting right for me?
+				<li>Identifying your website’s resource needs and budget for Amazon Web Services</li>
+				<li>A tour of the many services offered by AWS, what they mean, and how they work together – Configuring servers using EasyEngine</li>
+				<li>How to handle uploaded media and multiple servers</li>
+				<li>Autoscaling to handle fluctuating traffic</li>
+				<li>Creating code deployment pipelines so you can push updates safely and reliably</li>
+				<li>Hardening your set-up to through security best practices so you don’t get hacked</li>
+			</ul>
+			<p>By the end of this talk, you will have a better understanding of the steps necessary for running a highly-available, scalable WordPress set-up that can handle any amount of traffic and work the way you want it to for a lot less money than conventional web hosting.</p>
+		</div>
+		<ul>
+			<li>Slides: http://kingkool68.com/scaling-wordpress-on-aws/</li>
+			<li>Source: https://github.com/kingkool68/scaling-wordpress-on-aws</li>
+			<li>Video: https://wordpress.tv/2016/11/22/russell-heimlich-scaling-up-wordpress-on-amazon-web-services/</li>
+			<li>Location: WordCamp Baltimore 2016</li>
+			<li>Event Details: https://2016.baltimore.wordcamp.org/session/scaling-up-wordpress-on-amazon-web-services/</li>
+		</ul>
+	</div>
+	#}
+{% endblock %}
