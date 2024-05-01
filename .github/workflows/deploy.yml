@@ -71,7 +71,7 @@ jobs:
           fi
 
           # Capture diff of the changes between the two branches
-          git diff --no-color ${BUILD_BRANCH} ${GITHUB_REF_NAME} > ~/${BUILD_BRANCH}.diff
+          git diff --no-color --binary ${BUILD_BRANCH} ${GITHUB_REF_NAME} > ~/${BUILD_BRANCH}.diff
 
           # If the diff file is not empty then continue
           if [ -s ~/${BUILD_BRANCH}.diff ]; then
