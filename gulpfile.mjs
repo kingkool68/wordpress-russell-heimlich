@@ -81,7 +81,7 @@ gulp.task('styles', function () {
 				errLogToConsole: config.errLogToConsole,
 				outputStyle: config.outputStyle,
 				precision: config.precision,
-				loadPaths: config.loadPaths,
+				includePaths: config.includePaths,
 			})
 		)
 		.on('error', sass.logError)
@@ -116,6 +116,12 @@ gulp.task('scripts', function () {
 			base: config.scriptBase,
 		})
 		.pipe(
+			rename(function (path) {
+				path.basename = path.basename.replace('.src', '');
+				return path;
+			})
+		)
+		.pipe(
 			plumber({
 				errorHandler: function (err) {
 					notify.onError('Error: <%= error.message %>')(err);
@@ -141,15 +147,9 @@ gulp.task('scripts', function () {
 				]
 			})
 		)
-		// .pipe(remember('scripts')) // Bring all files back to stream
+		.pipe(remember('scripts')) // Bring all files back to stream
 		.pipe(uglify())
 		.pipe(lineec()) // Consistent Line Endings for non UNIX systems.
-		.pipe(
-			rename(function (path) {
-				path.basename = path.basename.replace('.src', '');
-				return path;
-			})
-		)
 		.pipe(gulp.dest(config.scriptDest))
 		.pipe(notify({ message: 'TASK: "scripts" Completed! 💯', onLast: true }));
 });
@@ -169,6 +169,7 @@ gulp.task('setup', function () {
 		gulp
 			.src(file.src)
 			.pipe(
+
 				rename(file.rename)
 			)
 			.pipe(gulp.dest(file.dest));
