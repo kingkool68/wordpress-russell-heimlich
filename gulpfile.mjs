@@ -46,7 +46,7 @@ import babel from 'gulp-babel'; // Compiles ESNext to browser compatible JS.
 
 import { createGulpEsbuild } from 'gulp-esbuild';
 var esbuild = createGulpEsbuild({
-    pipe: true,
+	pipe: true,
 });
 
 // Utility related plugins.
@@ -73,29 +73,29 @@ import replace from 'gulp-replace'; // For cleaning up minified CSS file content
  *    6. Minifies the CSS file and generates style.min.css
  */
 gulp.task('styles', function () {
-    return gulp
-        .src(config.styleSRC)
-        // .pipe( sourcemaps.init() )
-        .pipe(
-            sass({
-                errLogToConsole: config.errLogToConsole,
-                outputStyle: config.outputStyle,
-                precision: config.precision,
-                includePaths: config.includePaths,
-            })
-        )
-        .on('error', sass.logError)
-        .pipe(autoprefixer(config.BROWSERS_LIST))
-        .pipe(filter('**/*.css')) // Filtering stream to only css files
-        .pipe(jmq({ log: true })) // Merge Media Queries only for .min.css version.
-        .pipe(rename({ suffix: '.min' }))
-        .pipe(minifycss())
-        .pipe(replace(/(\S)\+(\S)/g, '$1 + $2')) // Replace 5vw+3rem to 5vw + 3rem because the space around a plus matters for clamp()
-        .pipe(replace('svg + xml', 'svg+xml')) // Don't add a space around plus symbol when using an SVG Data URI like in lite-youtube-embed.scss
-        // .pipe( sourcemaps.write( './' ) )
-        .pipe(lineec()) // Consistent Line Endings for non UNIX systems.
-        .pipe(gulp.dest(config.styleDestination))
-        .pipe(notify({ message: 'TASK: "styles" Completed! 💯', onLast: true }));
+	return gulp
+		.src(config.styleSRC)
+		// .pipe( sourcemaps.init() )
+		.pipe(
+			sass({
+				errLogToConsole: config.errLogToConsole,
+				outputStyle: config.outputStyle,
+				precision: config.precision,
+				loadPaths: config.loadPaths,
+			})
+		)
+		.on('error', sass.logError)
+		.pipe(autoprefixer(config.BROWSERS_LIST))
+		.pipe(filter('**/*.css')) // Filtering stream to only css files
+		.pipe(jmq({ log: true })) // Merge Media Queries only for .min.css version.
+		.pipe(rename({ suffix: '.min' }))
+		.pipe(minifycss())
+		.pipe(replace(/(\S)\+(\S)/g, '$1 + $2')) // Replace 5vw+3rem to 5vw + 3rem because the space around a plus matters for clamp()
+		.pipe(replace('svg + xml', 'svg+xml')) // Don't add a space around plus symbol when using an SVG Data URI like in lite-youtube-embed.scss
+		// .pipe( sourcemaps.write( './' ) )
+		.pipe(lineec()) // Consistent Line Endings for non UNIX systems.
+		.pipe(gulp.dest(config.styleDestination))
+		.pipe(notify({ message: 'TASK: "styles" Completed! 💯', onLast: true }));
 });
 
 /**
@@ -110,73 +110,72 @@ gulp.task('styles', function () {
  *     4. Uglifes/Minifies the JS file and generates custom.min.js
  */
 gulp.task('scripts', function () {
-    return gulp
-        .src(config.scriptSRC, {
-            since: gulp.lastRun('scripts'), // Only run on changed files.
-            base: config.scriptBase,
-        })
-        .pipe(
-            rename(function (path) {
-                path.basename = path.basename.replace('.src', '');
-                return path;
-            })
-        )
-        .pipe(
-            plumber({
-                errorHandler: function (err) {
-                    notify.onError('Error: <%= error.message %>')(err);
-                    this.emit('end'); // End stream if error is found
-                }
-            })
-        )
-        .pipe(
-            esbuild({
-                bundle: true,
-                loader: { '.js': 'js' }
-            })
-        )
-        .pipe(
-            babel({
-                presets: [
-                    [
-                        '@babel/preset-env', // Preset to compile your modern JS to ES5.
-                        {
-                            targets: { browsers: config.BROWSERS_LIST } // Target browser list to support.
-                        }
-                    ]
-                ]
-            })
-        )
-        .pipe(remember('scripts')) // Bring all files back to stream
-        .pipe(uglify())
-        .pipe(lineec()) // Consistent Line Endings for non UNIX systems.
-        .pipe(gulp.dest(config.scriptDest))
-        .pipe(notify({ message: 'TASK: "scripts" Completed! 💯', onLast: true }));
+	return gulp
+		.src(config.scriptSRC, {
+			since: gulp.lastRun('scripts'), // Only run on changed files.
+			base: config.scriptBase,
+		})
+		.pipe(
+			plumber({
+				errorHandler: function (err) {
+					notify.onError('Error: <%= error.message %>')(err);
+					this.emit('end'); // End stream if error is found
+				}
+			})
+		)
+		.pipe(
+			esbuild({
+				bundle: true,
+				loader: { '.js': 'js' }
+			})
+		)
+		.pipe(
+			babel({
+				presets: [
+					[
+						'@babel/preset-env', // Preset to compile your modern JS to ES5.
+						{
+							targets: { browsers: config.BROWSERS_LIST } // Target browser list to support.
+						}
+					]
+				]
+			})
+		)
+		// .pipe(remember('scripts')) // Bring all files back to stream
+		.pipe(uglify())
+		.pipe(lineec()) // Consistent Line Endings for non UNIX systems.
+		.pipe(
+			rename(function (path) {
+				path.basename = path.basename.replace('.src', '');
+				return path;
+			})
+		)
+		.pipe(gulp.dest(config.scriptDest))
+		.pipe(notify({ message: 'TASK: "scripts" Completed! 💯', onLast: true }));
 });
 
 gulp.task('clean', function () {
-    var deletedPaths = deleteSync(config.filesToClean);
-    return gulp
-        .src('.')
-        .pipe(notify({ message: 'TASK: "clean" Completed! 💯', onLast: true }));
+	var deletedPaths = deleteSync(config.filesToClean);
+	return gulp
+		.src('.')
+		.pipe(notify({ message: 'TASK: "clean" Completed! 💯', onLast: true }));
 });
 
 gulp.task('setup', function () {
-    config.filesToMove.forEach(function (file) {
-        if (!file.rename) {
-            file.rename = {};
-        }
-        gulp
-            .src(file.src)
-            .pipe(
-
-                rename(file.rename)
-            )
-            .pipe(gulp.dest(file.dest));
-    });
-    return gulp
-        .src('.')
-        .pipe(notify({ message: 'TASK: "setup" Completed! 💯', onLast: true }));
+	config.filesToMove.forEach(function (file) {
+		if (!file.rename) {
+			file.rename = {};
+		}
+		gulp
+			.src(file.src)
+			.pipe(
+				rename(file.rename)
+			)
+			.pipe(gulp.dest(file.dest));
+	});
+	return gulp
+		.src('.')
+		.pipe(notify({ message: 'TASK: "setup" Completed! 💯', onLast: true }));
 });
 
 /**
@@ -185,14 +184,14 @@ gulp.task('setup', function () {
  * Watches for file changes and runs specific tasks.
  */
 gulp.task(
-    'default',
-    gulp.parallel(
-        'clean',
-        'styles',
-        'scripts',
-        function watchFiles() {
-            gulp.watch(config.styleWatchFiles, gulp.parallel('styles')); // Reload on SCSS file changes.
-            gulp.watch(config.scriptWatchFiles, gulp.series('scripts')); // Reload on scripts file changes.
-        }
-    )
+	'default',
+	gulp.parallel(
+		'clean',
+		'styles',
+		'scripts',
+		function watchFiles() {
+			gulp.watch(config.styleWatchFiles, gulp.parallel('styles')); // Reload on SCSS file changes.
+			gulp.watch(config.scriptWatchFiles, gulp.series('scripts')); // Reload on scripts file changes.
+		}
+	)
 );
