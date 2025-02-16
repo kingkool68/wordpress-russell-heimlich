@@ -7,7 +7,6 @@
     font-size: fluid(56px, 76px);
     line-height: 1.15;
     font-weight: $fontWeight;
-    color: $gray-90;
 }
 
 @mixin h2($fontWeight: 700) {
@@ -15,7 +14,6 @@
     font-size: fluid(42px, 56px);
     line-height: 1.15;
     font-weight: $fontWeight;
-    color: $gray-90;
 }
 
 @mixin h3($fontWeight: 700) {
@@ -23,7 +21,6 @@
     font-size: fluid(32px, 42px);
     line-height: 1.15;
     font-weight: $fontWeight;
-    color: $gray-90;
 }
 
 @mixin h4($fontWeight: 700) {
@@ -31,19 +28,16 @@
     font-size: fluid(24px, 32px);
     line-height: 1.15;
     font-weight: $fontWeight;
-    color: $gray-90;
 }
 
 @mixin h5($fontWeight: 700) {
     font-size: rem(24px);
     line-height: 1.15;
     font-weight: $fontWeight;
-    color: $gray-90;
 }
 
 @mixin h6($fontWeight: 400) {
     font-size: rem(24px);
     line-height: 1.15;
     font-weight: $fontWeight;
-    color: $gray-90;
 }

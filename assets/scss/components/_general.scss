@@ -5,12 +5,12 @@ html {
 }
 body {
 	font-family: $text-font;
-	background-color: $gray-15;
-	color: $gray-65;
+	background-color: var(--color-bg);
+	color: var(--color-text);
 }
 
 a {
-	color: $link-blue;
+	color: var(--color-accent);
 
 	&:hover,
 	&focus {
