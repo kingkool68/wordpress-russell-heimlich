@@ -1,18 +1,18 @@
 {
-    "name": "kingkool68/wordpress-russell-heimlich",
-    "description": "A sophisticated WordPress theme made by Russell Heimlich",
-    "require": {
-        "php": "^8.2"
-    },
-    "require-dev": {
-        "phpcompatibility/phpcompatibility-wp": "^2.1",
-        "wp-coding-standards/wpcs": "^3.0.0",
-        "php-stubs/wordpress-stubs": "^6.0",
-        "php-stubs/acf-pro-stubs": "^6.0"
-    },
-    "config": {
-        "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true
-        }
-    }
+	"name": "kingkool68/wordpress-russell-heimlich",
+	"description": "A sophisticated WordPress theme made by Russell Heimlich",
+	"require": {
+		"php": "^8.2"
+	},
+	"require-dev": {
+		"phpcompatibility/phpcompatibility-wp": "^2.1",
+		"wp-coding-standards/wpcs": "^3.0.0",
+		"php-stubs/wordpress-stubs": "^6.0",
+		"php-stubs/acf-pro-stubs": "^6.0"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	}
 }
