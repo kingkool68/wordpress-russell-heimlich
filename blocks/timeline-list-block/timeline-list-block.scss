@@ -1,58 +1,56 @@
-@import 'base/_imports.scss';
+@import "base/_imports.scss";
 
 .timeline-list-block {
+	.the-title {
+		@include h2();
+	}
 
-    .the-title {
-        @include h2();
-    }
+	.the-list {
+		margin-bottom: rem(32px);
 
-    .the-list {
-        margin-bottom: rem(32px);
+		li {
+			list-style: none;
+			margin: 0;
+			display: grid;
+			grid-template-columns: 15ch auto;
 
-        li {
-            list-style: none;
-            margin: 0;
-            display: grid;
-            grid-template-columns: 15ch auto;
+			&:last-of-type {
+				.dates,
+				.info {
+					padding-bottom: 0;
+				}
+			}
+		}
 
-            &:last-of-type {
+		.dates {
+			text-align: right;
+			padding: 0 rem(32px) rem(32px) 0;
+		}
 
-                .dates,
-                .info {
-                    padding-bottom: 0;
-                }
-            }
-        }
+		.info {
+			padding: 0 0 rem(32px) rem(32px);
+			border-left: rem(2px) solid $gray-15;
+			position: relative;
 
-        .dates {
-            text-align: right;
-            padding: 0 rem(32px) rem(32px) 0;
-        }
+			&::after {
+				width: rem(32px);
+				height: rem(32px);
+				display: block;
+				position: absolute;
+				border-radius: 50%;
+				content: "";
+				border: rem(2px) solid $gray-15;
+				background-color: $white;
+				left: rem(-16px);
+				top: rem(-8px);
+			}
+		}
+	}
 
-        .info {
-            padding: 0 0 rem(32px) rem(32px);
-            border-left: rem(2px) solid $gray-15;
-            position: relative;
+	.the-cta {
+		@include icon_link();
 
-            &::after {
-                width: rem(32px);
-                height: rem(32px);
-                display: block;
-                position: absolute;
-                border-radius: 50%;
-                content: "";
-                border: rem(2px) solid $gray-15;
-                background-color: $white;
-                left: rem(-16px);
-                top: rem(-8px);
-            }
-        }
-    }
-
-    .the-cta {
-        @include icon_link();
-
-        display: inline-flex;
-        align-items: center;
-    }
+		display: inline-flex;
+		align-items: center;
+	}
 }

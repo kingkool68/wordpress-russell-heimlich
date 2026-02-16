@@ -1,10 +1,12 @@
 // Font families
-$helvetica-font : 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$system         : -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+$helvetica-font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$system:
+	-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu,
+	Cantarell, "Helvetica Neue", sans-serif;
 
-$headline-font  : $system;
-$text-font      : $system;
-$mono-font      : monospace;
+$headline-font: $system;
+$text-font: $system;
+$mono-font: monospace;
 
 $maximum-page-width: rem(1440px);
 
