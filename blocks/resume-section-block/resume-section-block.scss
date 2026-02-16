@@ -1,27 +1,27 @@
-@import 'base/_imports.scss';
+@import "base/_imports.scss";
 
 .resume-section-block {
-    margin-bottom: fluid(32px, 64px);
+	margin-bottom: fluid(32px, 64px);
 
-    .the-title {
-        @include h3();
-    }
+	.the-title {
+		@include h3();
+	}
 
-    .the-meta-details {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-    }
+	.the-meta-details {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-end;
+	}
 
-    .the-location {
-        display: block;
-        font-size: rem(14px);
-        text-transform: uppercase;
-    }
+	.the-location {
+		display: block;
+		font-size: rem(14px);
+		text-transform: uppercase;
+	}
 
-    .the-duration {
-        font-size: rem(14px);
-        text-transform: uppercase;
-        display: block;
-    }
+	.the-duration {
+		font-size: rem(14px);
+		text-transform: uppercase;
+		display: block;
+	}
 }

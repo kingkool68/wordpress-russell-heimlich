@@ -1,29 +1,29 @@
-@import 'base/_imports.scss';
+@import "base/_imports.scss";
 
 .talk-teaser-block {
-    .inner {
-        display: flex;
-        // align-items: center;
-        gap: rem(32px);
-    }
+	.inner {
+		display: flex;
+		// align-items: center;
+		gap: rem(32px);
+	}
 
-    img {
-        max-width: rem(480px);
-    }
+	img {
+		max-width: rem(480px);
+	}
 
-    .the-meta {
-        font-size: rem(14px);
-        font-weight: 300;
-        margin-bottom: rem(4px);
-    }
+	.the-meta {
+		font-size: rem(14px);
+		font-weight: 300;
+		margin-bottom: rem(4px);
+	}
 
-    .the-title {
-        @include h1();
+	.the-title {
+		@include h1();
 
-        margin-bottom: rem(8px);
-    }
+		margin-bottom: rem(8px);
+	}
 
-    .the-excerpt {
-        line-height: 1.5;
-    }
+	.the-excerpt {
+		line-height: 1.5;
+	}
 }
