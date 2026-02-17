@@ -1,4 +1,4 @@
-@import "base/_imports.scss";
+@use "base/_imports.scss" as *;
 
 .single-talk {
 	.single-title {
