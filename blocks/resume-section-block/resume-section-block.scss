@@ -1,4 +1,4 @@
-@import "base/_imports.scss";
+@use "base/_imports.scss" as *;
 
 .resume-section-block {
 	margin-bottom: fluid(32px, 64px);

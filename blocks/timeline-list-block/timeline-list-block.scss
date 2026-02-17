@@ -1,4 +1,4 @@
-@import "base/_imports.scss";
+@use "base/_imports.scss" as *;
 
 .timeline-list-block {
 	.the-title {
