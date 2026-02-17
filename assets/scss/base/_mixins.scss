@@ -1,3 +1,5 @@
+@use "functions" as *;
+
 @mixin hidden {
 	clip: rect(rem(1px), rem(1px), rem(1px), rem(1px));
 	height: rem(1px);

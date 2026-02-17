@@ -1,5 +1,6 @@
-@import 'base/_functions.scss';
-@import 'base/_mixins.scss';
-@import 'base/_typography.scss';
-@import 'base/_variables.scss';
-@import 'base/_colors.scss';
+@forward '_functions.scss';
+@forward '_fonts.scss';
+@forward '_mixins.scss';
+@forward '_variables.scss';
+@forward '_typography.scss';
+@forward '_colors.scss';
